@@ -4,8 +4,8 @@
 
 ![RentRadar Banner](/public/built-for-aignite-2026.png)
 
-[![Built for AIgnite 2026](https://img.shields.io/badge/Built_for-AIgnite_2026-FACC15?style=for-the-badge&logo=target&logoColor=0A0A0A)](https://rentradar-pi.vercel.app)
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed_on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://rentradar-pi.vercel.app)
+[![Built for AIgnite 2026](https://img.shields.io/badge/Built_for-AIgnite_2026-FACC15?style=for-the-badge&logo=target&logoColor=0A0A0A)](https://rentradar.vercel.app)
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed_on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://rentradar.vercel.app)
 [![Next.js 15](https://img.shields.io/badge/Next.js_15-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org)
 [![TypeScript 5](https://img.shields.io/badge/TypeScript_5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Google Gemini 2.5 Flash](https://img.shields.io/badge/Google_Gemini-2.5_Flash-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev)
@@ -14,7 +14,7 @@
 
 **Bangladesh’s First Multimodal Rental Scam Inspector, Move-In Shock Calculator & Statutory Tenant Defense Engine**
 
-[🚀 Live Production App](https://rentradar-pi.vercel.app) • [GitHub Repository](https://github.com/xeon797/rentradar) • [Judge 2-Min HUD](#-live-deployment--judge-2-minute-hud) • [Architecture](#-system-architecture) • [6-Stage Pipeline](#-the-6-stage-forensic-inspection-pipeline) • [API Reference](#-api-specification--live-telemetry) • [Legal Corpus](#-statutory-legal-corpus-premises-rent-control-act-1991)
+[🚀 Live Production App](https://rentradar.vercel.app) • [GitHub Repository](https://github.com/xeon797/rentradar) • [Judge 2-Min HUD](#-live-deployment--judge-2-minute-hud) • [Architecture](#-system-architecture) • [6-Stage Pipeline](#-the-6-stage-forensic-inspection-pipeline) • [API Reference](#-api-specification--live-telemetry) • [Legal Corpus](#-statutory-legal-corpus-premises-rent-control-act-1991)
 
 </div>
 
@@ -239,7 +239,7 @@ RentRadar’s legal engine directly operationalizes Bangladesh tenancy jurisprud
 
 RentRadar is optimized natively for **Vercel** with Next.js 15 App Router and Edge/Serverless computing:
 
-- **Live URL:** [https://rentradar-pi.vercel.app](https://rentradar-pi.vercel.app)
+- **Live URL:** [https://rentradar.vercel.app](https://rentradar.vercel.app) (Alias: [https://rentradar-pi.vercel.app](https://rentradar-pi.vercel.app))
 - **Deployment Platform:** Vercel Edge & Serverless Functions
 - **Zero-Config Setup:** Fully configured with `vercel.json` and continuous deployment enabled via GitHub repository integration (`origin/main`).
 
