@@ -2,20 +2,197 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "leaflet/dist/leaflet.css";
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --paper: #F7F6F2;
+    --surface: #FFFFFF;
+    --carbon: #0A0A0A;
+  }
+
+  body {
+    background-color: #F7F6F2;
+    color: #0A0A0A;
+    font-family: var(--font-sans), var(--font-bangla), sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* Blueprint Grid Pattern */
+.bg-blueprint-grid {
+  background-image: radial-gradient(#D4D2CD 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Civic Hazard Warning Stripe */
+.hazard-stripe {
+  background-image: repeating-linear-gradient(
+    45deg,
+    #FACC15,
+    #FACC15 10px,
+    #0A0A0A 10px,
+    #0A0A0A 20px
+  );
+  height: 6px;
+}
+
+.hazard-stripe-danger {
+  background-image: repeating-linear-gradient(
+    45deg,
+    #DC2626,
+    #DC2626 10px,
+    #0A0A0A 10px,
+    #0A0A0A 20px
+  );
+  height: 6px;
+}
+
+/* Bilingual Typography Flow */
+.font-bilingual {
+  line-height: 1.65;
+  font-family: var(--font-sans), var(--font-bangla), sans-serif;
+}
+
+/* Tactile 3D Isometric Docket Depth */
+.docket-3d {
+  box-shadow: 4px 4px 0px 0px #0A0A0A, 8px 8px 0px 0px rgba(10, 10, 10, 0.15);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.docket-3d:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #0A0A0A, 12px 12px 0px 0px rgba(10, 10, 10, 0.2);
+}
+
+/* Tactile Button Micro-Depression */
+.btn-tactile {
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.btn-tactile:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px 0px #0A0A0A;
+}
+
+.btn-tactile:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px 0px #0A0A0A;
+}
+
+/* Rubber Stamp Styling for Civic Seals */
+.civic-stamp {
+  display: inline-block;
+  padding: 4px 10px;
+  text-transform: uppercase;
+  font-family: var(--font-mono), monospace;
+  font-weight: 900;
+  border-width: 2px;
+  border-style: solid;
+  transform: rotate(-2deg);
+  letter-spacing: 0.05em;
+}
+
+/* Radar Scan Keyframes & Animations */
+@keyframes radar-sweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-radar-sweep {
+  animation: radar-sweep 4s linear infinite;
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(1000%);
+  }
+}
+
+.animate-scanline {
+  animation: scanline 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.shimmer-active {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-active::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 1.8s infinite;
+  content: "";
+}
+
+/* ========================================================================= */
+/* PRINT STYLESHEET: CLEAN A4 SECTION 13 RENT RECEIPT & INSPECTION DOCKETS  */
+/* ========================================================================= */
+@media print {
+  /* Hide UI navigation, buttons, drawers and footers during printing */
+  header,
+  footer,
+  nav,
+  button,
+  .no-print,
+  [role="dialog"],
+  input,
+  select,
+  textarea {
+    display: none !important;
+  }
+
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Make docket cards and print preview full width without shadows */
+  .shadow-docket,
+  .shadow-docket-sm,
+  .docket-3d {
+    box-shadow: none !important;
+    border: 1px solid #000000 !important;
+  }
+
+  .bg-paper,
+  .bg-surface {
+    background-color: #FFFFFF !important;
+  }
+
+  /* Clean page break management */
+  .page-break-after {
+    page-break-after: always;
+  }
+
+  .print-only {
+    display: block !important;
+  }
 }

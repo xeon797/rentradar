@@ -1,0 +1,31 @@
+# Render Blueprint Specification for RentRadar BD
+# Automatic Zero-Downtime Deployment on Render (https://render.com)
+
+services:
+  - type: web
+    name: rentradar
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm install --include=optional && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 20.18.0
+      - key: NPM_FLAGS
+        value: --include=optional
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_TELEMETRY_DISABLED
+        value: "1"
+      # Optional Cloud Integrations (Platform runs 100% deterministically if omitted)
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: NEXT_PUBLIC_SUPABASE_URL
+        sync: false
+      - key: NEXT_PUBLIC_SUPABASE_ANON_KEY
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
