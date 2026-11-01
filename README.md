@@ -239,7 +239,7 @@ RentRadar’s legal engine directly operationalizes Bangladesh tenancy jurisprud
 
 RentRadar is optimized natively for **Vercel** with Next.js 15 App Router and Edge/Serverless computing:
 
-- **Live URL:** [https://rentradar.vercel.app](https://rentradar.vercel.app) (Alias: [https://rentradar-pi.vercel.app](https://rentradar-pi.vercel.app))
+- **Live URL:** [https://rentradar.vercel.app](https://rentradar.vercel.app)
 - **Deployment Platform:** Vercel Edge & Serverless Functions
 - **Zero-Config Setup:** Fully configured with `vercel.json` and continuous deployment enabled via GitHub repository integration (`origin/main`).
 
