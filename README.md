@@ -1,48 +1,84 @@
-# RentRadar BD (রেন্টরাডার) // Civic Rental Intelligence System
-### Built for AIgnite 2026 • Bangladesh Housing Transparency & Tenant Protection Platform
+# RentRadar BD (রেন্টরাডার) // Civic Rental Intelligence & Forensic Tenant Defense
 
-![RentRadar Built for AIgnite 2026](/public/built-for-aignite-2026.png)
+<div align="center">
 
+![RentRadar Banner](/public/built-for-aignite-2026.png)
+
+[![Built for AIgnite 2026](https://img.shields.io/badge/Built_for-AIgnite_2026-FACC15?style=for-the-badge&logo=target&logoColor=0A0A0A)](https://rentradar.bd)
+[![Next.js 15](https://img.shields.io/badge/Next.js_15-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org)
+[![TypeScript 5](https://img.shields.io/badge/TypeScript_5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Google Gemini 2.5 Flash](https://img.shields.io/badge/Google_Gemini-2.5_Flash-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev)
+[![Sharp 9x8 dHash](https://img.shields.io/badge/Sharp-9x8_dHash-99CC00?style=for-the-badge&logo=node.js&logoColor=white)](https://sharp.pixelplumbing.com)
+[![Supabase pgvector](https://img.shields.io/badge/Supabase-pgvector-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com)
+[![Deploy to Render](https://img.shields.io/badge/Deploy_to-Render-46E3B7?style=for-the-badge&logo=render&logoColor=0A0A0A)](https://render.com)
+
+**Bangladesh’s First Multimodal Rental Scam Inspector, Move-In Shock Calculator & Statutory Tenant Defense Engine**
+
+[Live Demo](#-live-deployment--judge-2-minute-hud) • [Architecture](#-system-architecture) • [6-Stage Pipeline](#-the-6-stage-forensic-inspection-pipeline) • [API Reference](#-api-specification--live-telemetry) • [Legal Corpus](#-statutory-legal-corpus-premises-rent-control-act-1991) • [Deployment](#-deployment-guide)
+
+</div>
+
+---
+
+## 📌 Executive Summary & Civic Mission
+
+The urban rental ecosystem across **Dhaka**, **Sylhet**, and **Chattogram** faces an acute trust and transparency deficit:
+- **Pre-Visit Advance Scams:** Unverified Facebook To-Let groups host predatory listings with stolen luxury photos demanding ৳1,000–৳3,000 bKash "visiting-card fees" before disappearing.
+- **Hidden Utility Overhead & Sub-Meter Arbitrage:** Advertised "base rent" masks building service charges, LPG cylinder costs (+৳17,400/yr over pipeline gas), and uncalibrated electricity sub-meters marked up to ৳16–৳18/unit (a 100%+ illegal markup over official BERC tariffs).
+- **Statutory Law Neglect:** Widespread violations of **The Premises Rent Control Act, 1991 (বাড়ি ভাড়া নিয়ন্ত্রণ আইন, ১৯৯১)**—including arbitrary mid-year rent hikes (violating Section 7), non-refundable 4-to-6 month advance deposits (violating Section 10), and refusal of signed written rent receipts (violating Section 13).
+
+### The RentRadar Engineering Philosophy
 > **"AI is an Evidence Collector, Never an Arbitrary Judge."**  
-> RentRadar combines **Google Gemini 2.5 Flash Multimodal AI** with **Sharp 9×8 Perceptual Gradient dHash**, **Deterministic Bangladesh Scam Rules**, and the statutory corpus of **The Premises Rent Control Act, 1991 (বাড়ি ভাড়া নিয়ন্ত্রণ আইন, ১৯৯১)** to dismantle rental fraud, expose hidden move-in utility shocks, and empower tenants across Dhaka, Sylhet, and Chattogram.
+> Rather than relying on black-box LLM hallucinations to determine whether a listing is a scam, RentRadar utilizes **Google Gemini 2.5 Flash** strictly to transcribe multimodal evidence and extract advertised claims. Final risk scores and statutory violations are computed **100% deterministically** against codified municipal rules, mathematical perceptual image hashes, and Bangladesh law.
 
 ---
 
-## ⚡ 2-Minute Judge Evaluation Guide (5-Stop Proof Sequence)
+## ⚡ Live Deployment & Judge 2-Minute HUD
 
-RentRadar features a built-in **Judge 2-Minute Proof HUD** accessible from any page via the `[ ⚡ JUDGE GUIDE ]` button in the top navigation bar. Click each stop to jump directly to its calibrated proof state:
+RentRadar features an interactive **Judge 2-Minute Evaluation HUD** accessible on every viewport via the **`[ ⚡ JUDGE GUIDE ]`** button in the header navigation bar.
 
-| Stop | Module & Route | What It Proves (Core Technical Differentiator) |
-|---|---|---|
-| **STOP 01** | **[Hero Scam Demo](/inspector?preset=preset-01-bashundhara-scam)** | **Sharp 9×8 dHash** catches a luxury Gulshan photo (`RR-DHK-041`) reused in a cheap Bashundhara ad (**98.4% similarity / 1-bit difference**). **Gemini 2.5 Flash** transcribes Bangla text, and deterministic rules flag the `৳3,000` bKash visiting-fee scam. |
-| **STOP 02** | **[Bilingual Geospatial Radar](/discover)** | Imperative SSR-safe Leaflet map across Dhaka, Sylhet & Chattogram with **Fuse.js** instant search and **Gemini Natural Language search** (*"সিলেটে ২০ হাজারের নিচে ফ্যামিলি বাসা"*). |
-| **STOP 03** | **[Zero-LLM Verification Vault](/verify)** | Landlords submit holding/DESCO bill proof with client-side canvas compression. Switch to Auditor Farhana Yasmin to approve filing `VER-2026-101` (`RR-SYL-012`) and inspect the local/Resend MIME receipt. **Holding documents never touch external LLM APIs.** |
-| **STOP 04** | **[True-Cost & Move-In Shock](/calculator?docket=RR-SYL-014)** | Exposes how hidden service charges, `৳16/unit` sub-meter electricity markups, and LPG cylinders inflate advertised base rent by **+40%+**, visualized via **Recharts** with **50/30/20 budget stress testing**. |
-| **STOP 05** | **[1991 Rent Control Act Auditor](/assistant)** | Audits predatory lease agreements against Sections 7, 10, 13, 18 & 21 of the 1991 Act, provides 1-click **copyable Bangla WhatsApp counter-clauses**, and prints official **Section 13 Dual-Slip Rent Receipts (`ভাড়ার রশিদ`)**. |
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/xeon797/rentradar)
+
+### 5-Stop Live Proof Tour
+
+| Stop | Module & Deep-Link | Forensic Proof Demonstrated | Core Tech Stack |
+|:---:|---|---|---|
+| **01** | **[AI Scam Inspector](/inspector?preset=preset-01-bashundhara-scam)** | Catches a luxury Gulshan photo (`RR-DHK-041`) reused in a cheap Bashundhara ad (**98.4% similarity / 1-bit difference**). Transcribes Bangla text, flags pre-visit bKash demand, and generates an official Forensic Docket. | `Sharp 9x8 Lanczos3 dHash`, `Gemini 2.5 Flash OCR`, `Deterministic Scam Rules` |
+| **02** | **[Bilingual Geospatial Radar](/discover)** | Interactive SSR-safe Leaflet map across 3 divisions with Fuse.js instant search and Gemini Natural Language query interpretation (*"সিলেটে ২০ হাজারের নিচে ফ্যামিলি বাসা"*). | `Leaflet 1.9`, `OpenStreetMap`, `Gemini NL Parser`, `ASCII Numeral Converter` |
+| **03** | **[Zero-LLM Verification Vault](/verify)** | Landlords submit holding/DESCO bill proof with client-side canvas compression. Switch to Auditor Farhana Yasmin to approve filing `VER-2026-101` (`RR-SYL-012`) and inspect the MIME email dispatch. **Holding documents never touch external LLM APIs.** | `Canvas Pre-Compressor`, `Token Hash Match`, `Resend Transactional API` |
+| **04** | **[True-Cost & Move-In Shock](/calculator?docket=RR-SYL-014)** | Exposes how hidden service charges, ৳16/unit sub-meter electricity markups, and LPG cylinders inflate advertised base rent by **+40%+**, visualized via **Recharts** with **50/30/20 budget stress testing**. | `BERC Progressive Tariff Slabs`, `Section 10 Deposit Limits`, `Recharts` |
+| **05** | **[1991 Rent Act Legal Assistant](/assistant)** | Audits predatory lease agreements against Sections 7, 10, 13, 18 & 21 of the 1991 Act, provides 1-click **copyable Bangla WhatsApp counter-clauses**, and prints official **Section 13 Dual-Slip Rent Receipts (`ভাড়ার রশিদ`)**. | `Premises Rent Control Act, 1991`, `Gemini Legal Injected Prompt`, `Print Stylesheet` |
 
 ---
 
-## 🏛️ Platform Architecture: 5 Core Modules
+## 🏛️ System Architecture
 
 ```
-                                  RENTRADAR BD PLATFORM
-    ┌───────────────────────────────────────┴───────────────────────────────────────┐
-    │                                                                               │
-[MODULE 01] DISCOVER                   [MODULE 02] INSPECTOR                   [MODULE 03] VERIFY
-• Geospatial Radar Map                 • Multimodal Gemini 2.5 Flash           • Zero-LLM Privacy Vault
-• Leaflet + OpenStreetMap              • Sharp 9×8 64-bit dHash Engine         • Canvas Pre-Compression
-• Bilingual NL Query Parser            • Hamming Bitwise Distance < 10         • Local & Cloud Email Ledger
-• Neighborhood Benchmarks              • 6 Deterministic Scam Rules            • Municipal Auditor Dashboard
-    │                                                                               │
-    └───────────────────────────────────────┬───────────────────────────────────────┘
-                                            │
-               ┌────────────────────────────┴────────────────────────────┐
-               │                                                         │
-     [MODULE 04] CALCULATOR                                   [MODULE 05] ASSISTANT
-     • BERC & DESCO Progressive Slabs                         • Premises Rent Control Act, 1991
-     • Sub-Meter Annual Overcharge Audit                      • Gemini 2.5 Flash Legal Auditor
-     • Pipeline Gas vs LPG Exposure                           • 1-Click WhatsApp Bangla Counter-Drafts
-     • Recharts 12-Month Shock Schedule                       • Section 13 Dual-Slip Receipt Generator
+                                  RENTRADAR BD ARCHITECTURE
+   
+    [CLIENT LAYER: NEXT.JS 15 APP ROUTER]
+    ├── Tailwind CSS 3.4 (Civic Utilitarian Design System: #F7F6F2 Paper, #0A0A0A Carbon, #FACC15 Radar)
+    ├── Satoshi Display + Hind Siliguri (Bangla) + JetBrains Mono (Hashes & Currency)
+    ├── Imperative Leaflet Map (SSR-Safe) + Recharts Data Visualizations
+    └── HTML5 Canvas Client-Side Pre-Compression (<800KB, EXIF Stripping)
+         │
+         ▼
+    [SECURE API ROUTE MIDDLEWARE & CIRCUIT BREAKER]
+    ├── In-Memory Sliding-Window Rate Limiter (25 req/min per IP)
+    ├── Fail-Safe Circuit Breaker (Auto-failover to Deterministic Engines)
+    └── Zero-LLM-Leak Privacy Guard (NID Masking & Document Isolation)
+         │
+         ├───► [SHARP NATIVE DHASH ENGINE] ─────────────► 64-bit Grayscale Gradient Hash
+         │                                                Hamming Bitwise Distance Search (<10 bits)
+         │
+         ├───► [GEMINI 2.5 FLASH MULTIMODAL OCR] ───────► Strict JSON Schema Extraction
+         │                                                (Rent, Advance, Phone, Restriction)
+         │
+         ├───► [DETERMINISTIC STATUTORY RULE ENGINE] ───► 6 Hardcoded Scam Rules
+         │                                                Section 7, 10, 13, 18, 21 Audit
+         │
+         └───► [HYBRID STORAGE LEDGER] ────────────────► Supabase PostgreSQL + pgvector bit(64) <~>
+                                                          Fallback: 16-Property Local Ledger
 ```
 
 ---
@@ -50,125 +86,211 @@ RentRadar features a built-in **Judge 2-Minute Proof HUD** accessible from any p
 ## 🔍 The 6-Stage Forensic Inspection Pipeline
 
 ```
-  [Stage 1: Pre-Compression]
-  Tenant / Landlord uploads rental ad image
-  └─► HTML5 Canvas downsamples to max 1280px & <800KB; strips EXIF metadata for privacy.
-
-  [Stage 2: Perceptual Fingerprinting]
-  Processed by Sharp (Node.js native backend)
-  └─► 9×8 Lanczos3 Grayscale reduction -> Horizontal 64-bit brightness gradient hash.
-
-  [Stage 3: Photographic Collision Search]
-  Query existing listing database via bitwise Hamming distance:
-  └─► Hamming Distance <= 10 bits flags identical or cropped stolen photos across cities.
-
-  [Stage 4: Multimodal Claim Extraction]
-  Google Gemini 2.5 Flash (with strict JSON schema):
-  └─► Transcribes Bangla & English text, extracts claimed rent, advance months, contact numbers.
-  └─► Privacy Guard: Real NID numbers are automatically masked as [NID_MASKED].
-
-  [Stage 5: Deterministic Bangladesh Scam Rules]
-  Evidence analyzed against 6 hard-coded rules:
-  ├─ 1. ADVANCE_BKASH_DEMAND: Payment requested before physical inspection.
-  ├─ 2. PRICE_ANOMALY_LOW: Rent > 40% below neighborhood benchmark.
-  ├─ 3. DUPLICATE_IMAGE_COLLISION: Stolen photos used across different addresses.
-  ├─ 4. EXCESS_ADVANCE_DEMAND: Advance > 2 months (violates Section 10).
-  ├─ 5. SUBMETER_ELECTRICITY_MARKUP: Sub-meter rate > ৳10.5/unit (violates BERC code).
-  └─ 6. VAGUE_UNVERIFIED_LOCATION: Missing road/sector identifiers.
-
-  [Stage 6: Forensic Docket Output]
-  Generates immutable inspection docket with risk score (0-100), statutory citations, and action steps.
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ STAGE 1: CLIENT-SIDE PRE-COMPRESSION (HTML5 Canvas)                         │
+│ • Downsamples uploaded advertisement photos to max 1280px width.            │
+│ • Constrains payload to <800KB for instant transmission over BD networks.   │
+│ • Strips EXIF metadata to protect citizen privacy.                          │
+└──────────────────────────────────────┬──────────────────────────────────────┘
+                                       │
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ STAGE 2: PERCEPTUAL FINGERPRINTING (Sharp 9x8 Lanczos3 Grayscale dHash)    │
+│ • Resizes image to 9x8 grayscale grid using Lanczos3 interpolation.         │
+│ • Computes horizontal brightness gradient between adjacent pixels.          │
+│ • Produces a 64-bit binary hash string and 16-character hexadecimal hash.   │
+└──────────────────────────────────────┬──────────────────────────────────────┘
+                                       │
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ STAGE 3: BITWISE HAMMING DISTANCE COLLISION SEARCH                          │
+│ • Queries registry using PostgreSQL bit(64) Hamming distance operator (<~>).│
+│ • Collision Threshold: <= 10 bits difference (>84.4% similarity).           │
+│ • Detects stolen, cropped, recompressed, or cross-posted photos.            │
+└──────────────────────────────────────┬──────────────────────────────────────┘
+                                       │
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ STAGE 4: MULTIMODAL CLAIM EXTRACTION (Google Gemini 2.5 Flash)              │
+│ • Transcribes raw text in mixed Bangla and English.                         │
+│ • Validates extracted claims against strict Zod JSON schema.                │
+│ • Automatically masks real citizen NID numbers as [NID_MASKED].             │
+└──────────────────────────────────────┬──────────────────────────────────────┘
+                                       │
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ STAGE 5: DETERMINISTIC BANGLADESH SCAM & STATUTORY AUDIT                    │
+│ • ADVANCE_BKASH_DEMAND: Payment demanded prior to physical flat visit.      │
+│ • PRICE_ANOMALY_LOW: Claimed rent >40% below neighborhood benchmark.       │
+│ • DUPLICATE_IMAGE_COLLISION: Stolen photo matched to registered listing.   │
+│ • EXCESS_ADVANCE_DEMAND: Advance >2 months (violates Section 10).           │
+│ • SUBMETER_ELECTRICITY_MARKUP: Landlord rate >৳10.5/unit (violates BERC).   │
+│ • VAGUE_LOCATION_TRAP: Non-specific address preventing municipal cross-check.│
+└──────────────────────────────────────┬──────────────────────────────────────┘
+                                       │
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ STAGE 6: FORENSIC DOCKET OUTPUT & STATUTORY ACTIONS                         │
+│ • Generates immutable Inspection Docket (RR-INSP-XXXX) with risk score (0-100).│
+│ • Provides copyable Bangla WhatsApp counter-clauses citing 1991 Rent Act.   │
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🛡️ Privacy Engineering & Free-Tier Resilience
+## 🛠️ Technology Stack & Dependencies
 
-1. **Zero-LLM-Leak Utility Vault:** Utility bills, holding tax credentials, and citizen documents are stored in isolated local storage or private Supabase buckets. They are verified using deterministic hash matches and are **NEVER transmitted to external LLM APIs**.
-2. **Sliding-Window Token Bucket Rate Limiter (`src/lib/security/rate-limiter.ts`):** Limits burst traffic to **25 requests/minute per IP** across all AI endpoints (`/api/search/nl-filter`, `/api/inspector/analyze`, `/api/assistant/legal-audit`).
-3. **Fail-Safe Circuit Breaker:** When rate limits are reached or external API keys are omitted, RentRadar **never throws 429 or 500 errors**. Instead, it triggers an instant circuit-breaker failover to 100% deterministic local engines (`X-RentRadar-Circuit: CIRCUIT_BREAKER_DETERMINISTIC`), ensuring judges experience zero friction.
-4. **Live System Telemetry API (`GET /api/health`):** Provides real-time health checks on all 5 platform subsystems.
-
----
-
-## 💻 Tech Stack & Design System
-
-| Layer | Technologies & Tools |
-|---|---|
-| **Framework & Runtime** | Next.js 15 (App Router, Turbopack, React 19), Node.js runtime |
-| **Language & Typings** | TypeScript 5 (Strict Mode, Zero `any` in production code) |
-| **Styling & Design System** | Tailwind CSS 3.4, **Civic Utilitarian** (`#F7F6F2` paper, `#FFFFFF` surface, `#0A0A0A` carbon, `#FACC15` radar yellow, `shadow-docket`, sharp corners) |
-| **Typography** | **Satoshi** (display/headings), **Hind Siliguri** (Bangla typography), **JetBrains Mono** (currency, metrics, hashes) |
-| **Generative AI** | Google Gemini 2.5 Flash via official `@google/genai` SDK |
-| **Image Processing** | `sharp` native C++ bindings for 9×8 Lanczos3 Grayscale perceptual hashing |
-| **Geospatial & Mapping** | Imperative `leaflet` 1.9 + OpenStreetMap with custom SVG radar markers |
-| **Search & Filtering** | `fuse.js` fuzzy client-side search + Gemini Natural Language query parser |
-| **Data Visualization** | `recharts` responsive horizontal cost breakdowns & 12-month cashflow schedules |
-| **Database & Storage** | Supabase PostgreSQL + `pgvector` (`bit(64)` Hamming operator `<~>`) with hybrid offline ledger fallback |
-| **Validation & Schema** | `zod` for strict JSON extraction and API contract enforcement |
-| **Transactional Email** | `resend` cloud dispatcher with fallback local MIME inspection ledger |
+| Layer | Component | Specification |
+|---|---|---|
+| **Frontend Framework** | Next.js 15.1.7 | App Router, React 19, Turbopack, Server & Client Components |
+| **Language & Typings** | TypeScript 5 | Strict Mode, Zero `any` in production code |
+| **Styling & UI** | Tailwind CSS 3.4 | Civic Utilitarian Design System, `@media print` stylesheets |
+| **Typography** | Font Stack | Satoshi (Headings), Hind Siliguri (Bangla), JetBrains Mono (Hashes/Currency) |
+| **Multimodal AI** | `@google/genai` 2.32 | Gemini 2.5 Flash with structured JSON schema output |
+| **Perceptual Hashing** | `sharp` 0.35.5 | Native C++ libvips bindings for 9×8 Lanczos3 dHash generation |
+| **Mapping & GIS** | `leaflet` 1.9.4 | Imperative SSR-safe rendering, OpenStreetMap tiles, custom SVG markers |
+| **Search Engine** | `fuse.js` 7.5.0 | Fuzzy memory-indexed client search across Dhaka, Sylhet & Chattogram |
+| **Visualizations** | `recharts` 3.10.1 | Responsive horizontal cost breakdowns & 12-month cashflow schedules |
+| **Database & Vector** | `@supabase/ssr` & `supabase-js` | PostgreSQL with `pgvector` `bit(64)` Hamming operator (`<~>`) |
+| **Validation** | `zod` 4.6.7 | Strict API payload and OCR extraction validation |
+| **Email Dispatch** | `resend` REST API | Transactional municipal filing confirmations with local MIME fallback |
 
 ---
 
-## 🚀 Local Development Quickstart
+## 📡 API Specification & Live Telemetry
 
-### 1. Clone & Install Dependencies
+### `GET /api/health`
+Returns real-time health telemetry across all 5 platform subsystems:
+```json
+{
+  "ok": true,
+  "platform": "RentRadar BD // Civic Rental Intelligence",
+  "version": "1.0.0",
+  "subsystems": {
+    "geminiMultimodal": {
+      "status": "READY",
+      "model": "gemini-2.5-flash",
+      "mode": "GEMINI_2_5_FLASH_LIVE",
+      "configured": true
+    },
+    "sharpPerceptualDhash": {
+      "status": "READY",
+      "algorithm": "9x8_LANCZOS3_GRAYSCALE_64BIT_GRADIENT",
+      "collisionThresholdBits": 10
+    },
+    "databaseRepository": {
+      "status": "READY",
+      "mode": "HYBRID_LOCAL_LEDGER",
+      "totalListings": 16,
+      "engineeredCollisionPairs": 3
+    },
+    "privacyVault": {
+      "status": "ENFORCED",
+      "nidAutoMasking": true,
+      "utilityBillZeroLlmLeak": true
+    },
+    "statutoryEngine": {
+      "status": "READY",
+      "act": "Premises Rent Control Act, 1991 (বাড়ি ভাড়া নিয়ন্ত্রণ আইন, ১৯৯১)",
+      "sectionsIndexed": 7
+    },
+    "rateLimiter": {
+      "status": "ACTIVE",
+      "windowSeconds": 60,
+      "burstLimitPerMinute": 25,
+      "circuitBreaker": "AUTO_FAILOVER_TO_DETERMINISTIC"
+    }
+  }
+}
+```
+
+### Core API Endpoints
+
+| Method | Endpoint | Description | Free-Tier Guardrail |
+|---|---|---|---|
+| `POST` | `/api/inspector/analyze` | Executes 6-stage image dHash & multimodal claim extraction | Sliding Token Bucket + Deterministic Fallback |
+| `POST` | `/api/inspector/image-hash` | Computes 64-bit dHash and 8x8 luminance matrix from image buffer | Local Sharp Native Engine (<15ms) |
+| `POST` | `/api/search/nl-filter` | Parses mixed Bangla/English natural language queries into structured SQL filters | Regex & ASCII Numeral Fallback |
+| `POST` | `/api/assistant/legal-audit` | Audits lease clauses or answers tenant legal inquiries under 1991 Rent Act | Statutory Fallback Engine (<5ms) |
+| `POST` | `/api/verify` | Submits landlord utility documents or audits filings | Zero-LLM Isolated Vault |
+| `GET` | `/api/properties` | Queries property registry with filtering by city, rent, beds, and verification tier | In-Memory + Supabase Hybrid |
+
+---
+
+## 📜 Statutory Legal Corpus: Premises Rent Control Act, 1991
+
+RentRadar’s legal engine directly operationalizes Bangladesh tenancy jurisprudence:
+
+```
+[SECTION 7: ধারা ৭]  — Restriction on arbitrary increase of rent beyond standard rent; statutory 2-year freeze.
+[SECTION 10: ধারা ১০] — Prohibition on claiming advance rent exceeding 1 month without Rent Controller sanction.
+[SECTION 13: ধারা ১৩] — Mandatory statutory duty of landlord to deliver a signed written rent receipt with counterfoil.
+[SECTION 15: ধারা ১৫] — Fixation of objective standard rent by the Rent Controller Court.
+[SECTION 18: ধারা ১৮] — Statutory protection against arbitrary eviction & mandatory 30-day notice under Sec 106 TP Act.
+[SECTION 21: ধারা ২১] — Prohibition against cutting off or withholding essential utilities (water, gas, electricity, lift).
+[BERC DIRECTIVE]     — Prohibition on unauthorized commercial resale of residential electricity via sub-meter markups.
+```
+
+---
+
+## 🚢 Deployment Guide
+
+### Deploying on Render (Turnkey Blueprint)
+
+RentRadar includes a production-ready [`render.yaml`](/render.yaml) blueprint:
+
+1. Push this repository to GitHub.
+2. In the **[Render Dashboard](https://dashboard.render.com)**, click **"New +"** -> **"Blueprint"**.
+3. Select your repository. Render automatically reads `render.yaml` and provisions:
+   - **Build Command:** `npm install --include=optional && npm run build`
+   - **Start Command:** `npm start`
+   - **Health Check Path:** `/api/health`
+4. The application is live with zero-downtime health checking!
+
+### Containerized Deployment (Docker)
+
 ```bash
-git clone https://github.com/your-username/rentradar.git
+# Build production Docker image
+docker build -t rentradar-bd:latest .
+
+# Run container on port 10000
+docker run -p 10000:10000 rentradar-bd:latest
+```
+
+---
+
+## 💻 Local Development Setup
+
+```bash
+# 1. Clone repository
+git clone https://github.com/xeon797/rentradar.git
 cd rentradar
-npm install
-```
 
-### 2. Configure Environment Variables
-Create `.env.local` in the project root:
-```env
-# Google Gemini API Key (Optional: system works 100% deterministically without it)
-GEMINI_API_KEY=your_gemini_api_key_here
+# 2. Install dependencies (including Linux optional binaries)
+npm install --include=optional
 
-# Supabase (Optional: system runs on hybrid local ledger without it)
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+# 3. Environment configuration (Optional - runs 100% deterministically without keys)
+cp .env.example .env.local
 
-# Resend Transactional Email (Optional: system captures emails in local MIME ledger)
-RESEND_API_KEY=re_your_resend_key
-```
-
-### 3. Run Development Server
-```bash
+# 4. Run development server with Turbopack
 npm run dev
-```
-Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### 4. Run Production Build & Verification
-```bash
-# Type check
-npx tsc --noEmit
-
-# Lint
-npm run lint
-
-# Production build
-npm run build
-
-# Start production server
-npm start
+# 5. Execute production verification suite
+npx tsc --noEmit   # TypeScript verification (0 errors)
+npm run lint        # ESLint verification (0 warnings)
+npm run build       # Next.js static & dynamic build verification
 ```
 
 ---
 
-## 📜 Statutory Legal Basis: The Premises Rent Control Act, 1991
+## ⚖️ License & Ethical Declaration
 
-RentRadar's legal engine is grounded directly in the statutes of Bangladesh:
+Distributed under the **MIT License**.
 
-- **Section 7 (`ধারা ৭`):** Restriction on arbitrary increase of rent beyond standard rent; statutory 2-year freeze.
-- **Section 10 (`ধারা ১০`):** Prohibition on demanding advance deposits exceeding 1 month's rent without Rent Controller sanction.
-- **Section 13 (`ধারা ১৩`):** Mandatory statutory duty of landlord to issue signed written rent receipts (*ভাড়ার রশিদ*) with counterfoil.
-- **Section 15 (`ধারা ১৫`):** Determination and fixation of fair standard rent by the Rent Controller.
-- **Section 18 (`ধারা ১৮`):** Protection against arbitrary eviction; mandatory 30-day statutory notice requirement under Section 106 of the Transfer of Property Act, 1882.
-- **Section 21 (`ধারা ২১`):** Prohibition against severing or withholding essential supplies (water, gas, electricity, sanitation) to coerce tenants.
-- **BERC Residential Electricity Codes:** Prohibition on unauthorized commercial resale of electricity through uncalibrated sub-meters at inflated flat rates.
+**Ethical AI Declaration:** RentRadar strictly enforces the **Zero-LLM-Leak Guarantee**. Utility bills, holding tax IDs, and citizen identity numbers are processed exclusively in deterministic isolated storage and are **NEVER transmitted to external LLM APIs**. Real National ID (NID) numbers are masked at the OCR boundary.
 
 ---
 
-### Built with pride for AIgnite 2026.
-*RentRadar: Illuminating Bangladesh Housing Realities.*
+<div align="center">
+  <sub>Built with engineering rigor for AIgnite 2026 • Bangladesh Housing Intelligence Infrastructure</sub>
+</div>
