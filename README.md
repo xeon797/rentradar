@@ -4,17 +4,17 @@
 
 ![RentRadar Banner](/public/built-for-aignite-2026.png)
 
-[![Built for AIgnite 2026](https://img.shields.io/badge/Built_for-AIgnite_2026-FACC15?style=for-the-badge&logo=target&logoColor=0A0A0A)](https://rentradar.bd)
+[![Built for AIgnite 2026](https://img.shields.io/badge/Built_for-AIgnite_2026-FACC15?style=for-the-badge&logo=target&logoColor=0A0A0A)](https://rentradar-pi.vercel.app)
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed_on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://rentradar-pi.vercel.app)
 [![Next.js 15](https://img.shields.io/badge/Next.js_15-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org)
 [![TypeScript 5](https://img.shields.io/badge/TypeScript_5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Google Gemini 2.5 Flash](https://img.shields.io/badge/Google_Gemini-2.5_Flash-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev)
 [![Sharp 9x8 dHash](https://img.shields.io/badge/Sharp-9x8_dHash-99CC00?style=for-the-badge&logo=node.js&logoColor=white)](https://sharp.pixelplumbing.com)
 [![Supabase pgvector](https://img.shields.io/badge/Supabase-pgvector-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com)
-[![Deploy to Render](https://img.shields.io/badge/Deploy_to-Render-46E3B7?style=for-the-badge&logo=render&logoColor=0A0A0A)](https://render.com)
 
 **Bangladesh’s First Multimodal Rental Scam Inspector, Move-In Shock Calculator & Statutory Tenant Defense Engine**
 
-[Live Demo](#-live-deployment--judge-2-minute-hud) • [Architecture](#-system-architecture) • [6-Stage Pipeline](#-the-6-stage-forensic-inspection-pipeline) • [API Reference](#-api-specification--live-telemetry) • [Legal Corpus](#-statutory-legal-corpus-premises-rent-control-act-1991) • [Deployment](#-deployment-guide)
+[🚀 Live Production App](https://rentradar-pi.vercel.app) • [GitHub Repository](https://github.com/xeon797/rentradar) • [Judge 2-Min HUD](#-live-deployment--judge-2-minute-hud) • [Architecture](#-system-architecture) • [6-Stage Pipeline](#-the-6-stage-forensic-inspection-pipeline) • [API Reference](#-api-specification--live-telemetry) • [Legal Corpus](#-statutory-legal-corpus-premises-rent-control-act-1991)
 
 </div>
 
@@ -235,17 +235,20 @@ RentRadar’s legal engine directly operationalizes Bangladesh tenancy jurisprud
 
 ## 🚢 Deployment Guide
 
-### Deploying on Render (Turnkey Blueprint)
+### Deploying on Vercel (Production Native)
 
-RentRadar includes a production-ready [`render.yaml`](/render.yaml) blueprint:
+RentRadar is optimized natively for **Vercel** with Next.js 15 App Router and Edge/Serverless computing:
 
-1. Push this repository to GitHub.
-2. In the **[Render Dashboard](https://dashboard.render.com)**, click **"New +"** -> **"Blueprint"**.
-3. Select your repository. Render automatically reads `render.yaml` and provisions:
-   - **Build Command:** `npm install --include=optional && npm run build`
-   - **Start Command:** `npm start`
-   - **Health Check Path:** `/api/health`
-4. The application is live with zero-downtime health checking!
+- **Live URL:** [https://rentradar-pi.vercel.app](https://rentradar-pi.vercel.app)
+- **Deployment Platform:** Vercel Edge & Serverless Functions
+- **Zero-Config Setup:** Fully configured with `vercel.json` and continuous deployment enabled via GitHub repository integration (`origin/main`).
+
+#### Deploy via Vercel CLI:
+```bash
+# Link and deploy directly to production
+npx vercel link --project rentradar --yes
+npx vercel deploy --prod --yes
+```
 
 ### Containerized Deployment (Docker)
 
@@ -253,8 +256,8 @@ RentRadar includes a production-ready [`render.yaml`](/render.yaml) blueprint:
 # Build production Docker image
 docker build -t rentradar-bd:latest .
 
-# Run container on port 10000
-docker run -p 10000:10000 rentradar-bd:latest
+# Run container on port 3000
+docker run -p 3000:3000 rentradar-bd:latest
 ```
 
 ---
