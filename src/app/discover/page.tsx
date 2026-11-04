@@ -18,7 +18,6 @@ import { VerificationStamp } from "@/components/ui/verification-stamp";
 import PropertyDocketModal from "@/components/discover/PropertyDocketModal";
 import {
   Search,
-  Sparkles,
   MapPin,
   Bookmark,
   BookmarkCheck,
@@ -45,30 +44,6 @@ const RentalRadarMap = dynamic(
     ),
   }
 );
-
-// Sample natural language benchmark queries for judges & users
-const SAMPLE_QUERIES = [
-  {
-    label: "সিলেটে ২০ হাজারের নিচে ফ্যামিলি বাসা",
-    query: "সিলেটে ২০ হাজারের নিচে ফ্যামিলি বাসা",
-    city: "Sylhet",
-  },
-  {
-    label: "Bachelor flat near SUST Gate Akhalia under 15k",
-    query: "Bachelor flat near SUST Gate Akhalia under 15k",
-    city: "Sylhet",
-  },
-  {
-    label: "Verified 3BHK in Dhanmondi or Gulshan",
-    query: "Verified 3BHK in Dhanmondi or Gulshan",
-    city: "Dhaka",
-  },
-  {
-    label: "Show suspicious bait listings with duplicate photos",
-    query: "Show suspicious bait listings with duplicate photos",
-    city: "ALL",
-  },
-];
 
 export default function DiscoverPage() {
   const { isDocketSaved, toggleSavedDocket } = useCivicAuth();
@@ -207,8 +182,9 @@ export default function DiscoverPage() {
     let result = [...properties];
 
     // 1. Keyword search if keywords present in active NL result or direct input
-    const keywordsToSearch = activeNlResult?.keywords?.join(" ") || "";
-    if (keywordsToSearch.trim()) {
+    const directKeywords = nlInputText.trim();
+    const keywordsToSearch = activeNlResult?.keywords?.join(" ") || directKeywords;
+    if (keywordsToSearch) {
       const searchHits = fuse.search(keywordsToSearch).map((hit) => hit.item);
       if (searchHits.length > 0) {
         result = searchHits;
@@ -283,45 +259,37 @@ export default function DiscoverPage() {
     savedOnly,
     sortBy,
     isDocketSaved,
+    nlInputText,
   ]);
 
   return (
     <div className="w-full bg-paper min-h-[calc(100vh-4rem)]">
-      {/* Top Editorial Architectural Docket Banner */}
-      <div className="border-b-2 border-carbon bg-surface px-4 py-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div className="space-y-0.5">
-            <div className="flex items-center gap-2 font-mono text-[11px] text-muted-ink">
-              <span className="bg-carbon text-surface font-bold px-1.5 py-0.5 text-[10px]">
-                MODULE 01
-              </span>
-              <span>// SPATIAL RADAR &amp; NATURAL LANGUAGE</span>
-            </div>
-            <h1 className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-carbon">
-              Smart Rental Discovery &amp; Geospatial Radar
+      {/* Top Header Banner */}
+      <div className="border-b-2 border-carbon bg-surface px-4 py-3 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl flex items-center justify-between gap-3">
+          <div>
+            <h1 className="font-display text-xl sm:text-2xl font-bold uppercase tracking-tight text-carbon">
+              Rental Discovery &amp; Geospatial Radar
             </h1>
           </div>
 
-          <div className="flex items-center gap-2 flex-wrap font-mono text-xs">
+          <div className="flex items-center gap-2 font-mono text-xs">
             <div className="border border-carbon bg-paper px-2.5 py-1 text-muted-ink text-[11px] shadow-docket-sm">
-              <strong className="text-carbon">{properties.length}</strong> Listings
-            </div>
-            <div className="border border-carbon bg-paper px-2.5 py-1 text-muted-ink text-[11px] shadow-docket-sm">
-              <strong className="text-carbon">{collisionDocketSet.size / 2}</strong> Collision Pairs
+              <strong className="text-carbon">{properties.length}</strong> Listings Indexed
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bilingual Natural Language Search Engine Section */}
-      <div className="border-b border-carbon bg-paper px-4 py-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl space-y-3">
+      {/* Clean Streamlined Search Bar Section */}
+      <div className="border-b border-carbon bg-paper px-4 py-3 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl space-y-2">
           <form
             onSubmit={(e) => {
               e.preventDefault();
               handleRunNlParser();
             }}
-            className="flex flex-col sm:flex-row gap-2"
+            className="flex items-center gap-2"
           >
             <div className="relative flex-1">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-carbon" />
@@ -329,76 +297,54 @@ export default function DiscoverPage() {
                 type="text"
                 value={nlInputText}
                 onChange={(e) => setNlInputText(e.target.value)}
-                placeholder='Search naturally in Bangla or English (e.g., "সিলেটে ২০ হাজারের নিচে ফ্যামিলি বাসা" or "Verified 3BHK Dhanmondi")'
-                className="w-full border-2 border-carbon bg-surface pl-10 pr-4 py-2.5 font-mono text-xs text-carbon placeholder:text-muted-ink focus:outline-none focus:ring-0 shadow-docket-sm"
+                placeholder="Search rentals by location, budget, or keywords..."
+                className="w-full border-2 border-carbon bg-surface pl-10 pr-9 py-2 font-mono text-xs text-carbon placeholder:text-muted-ink focus:outline-none focus:ring-0 shadow-docket-sm"
               />
+              {nlInputText && (
+                <button
+                  type="button"
+                  onClick={handleClearNlFilter}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-ink hover:text-carbon"
+                  title="Clear input"
+                >
+                  <X className="h-3.5 w-3.5" />
+                </button>
+              )}
             </div>
             <button
               type="submit"
               disabled={isNlParsing}
-              className="px-4 py-2.5 text-xs font-mono font-bold bg-radar text-carbon border-2 border-carbon hover:bg-radar-hover shadow-docket-sm transition-all flex items-center justify-center gap-1.5 shrink-0 disabled:opacity-50"
+              className="px-4 py-2 text-xs font-mono font-bold bg-radar text-carbon border-2 border-carbon hover:bg-radar-hover shadow-docket-sm transition-all flex items-center justify-center gap-1.5 shrink-0 disabled:opacity-50"
             >
               {isNlParsing ? (
                 <>
                   <div className="w-3.5 h-3.5 border-2 border-carbon border-t-transparent animate-spin" />
-                  <span>PARSING WITH GEMINI...</span>
+                  <span>SEARCHING...</span>
                 </>
               ) : (
                 <>
-                  <Sparkles className="w-4 h-4 text-carbon" />
-                  <span>RUN NL PARSER</span>
+                  <Search className="w-3.5 h-3.5 text-carbon" />
+                  <span>SEARCH</span>
                 </>
               )}
             </button>
           </form>
 
-          {/* 1-Click Judge & User Query Chips */}
-          <div className="flex flex-wrap items-center gap-1.5 font-mono text-[11px]">
-            <span className="text-muted-ink font-bold uppercase mr-1">
-              // 1-CLICK PRESETS:
-            </span>
-            {SAMPLE_QUERIES.map((sample, idx) => (
-              <button
-                key={idx}
-                type="button"
-                onClick={() => {
-                  setNlInputText(sample.query);
-                  handleRunNlParser(sample.query);
-                }}
-                className="px-2 py-1 bg-surface border border-carbon hover:bg-radar transition-colors text-carbon flex items-center gap-1 shadow-[1px_1px_0px_0px_#0A0A0A]"
-              >
-                <span>✨</span>
-                <span>{sample.label}</span>
-              </button>
-            ))}
-          </div>
-
-          {/* Active NL Breakdown Alert Pill */}
+          {/* Active Filter Indicator */}
           {activeNlResult && (
-            <div className="bg-surface border-2 border-carbon p-3 shadow-docket-sm flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-              <div className="space-y-1">
-                <div className="flex items-center gap-2">
-                  <span className="font-mono text-[10px] font-bold bg-carbon text-radar px-1.5 py-0.5">
-                    {activeNlResult.engineUsed === "GEMINI_FLASH_LIVE"
-                      ? "⚡ GEMINI 2.5 FLASH PARSER"
-                      : "⚡ DETERMINISTIC BILINGUAL PARSER"}
-                  </span>
-                  <span className="font-mono text-xs font-bold text-carbon">
-                    STRUCTURED QUERY EXTRACTED
-                  </span>
-                </div>
-                <p className="text-xs text-muted-ink font-mono">
-                  {activeNlResult.parsedExplanation}
-                </p>
+            <div className="flex items-center justify-between bg-surface border border-carbon px-3 py-1.5 shadow-docket-sm font-mono text-xs">
+              <div className="flex items-center gap-2 truncate">
+                <span className="h-2 w-2 bg-radar shrink-0" />
+                <span className="text-muted-ink text-[11px]">Filtered:</span>
+                <span className="font-bold text-carbon truncate">{activeNlResult.parsedExplanation}</span>
               </div>
-
               <button
                 type="button"
                 onClick={handleClearNlFilter}
-                className="px-2.5 py-1 text-xs font-mono font-bold bg-paper border border-carbon hover:bg-carbon hover:text-surface transition-colors flex items-center gap-1 shrink-0 self-start sm:self-center"
+                className="px-2 py-0.5 text-[11px] font-bold bg-paper border border-carbon hover:bg-carbon hover:text-surface transition-colors flex items-center gap-1 shrink-0 ml-2"
               >
-                <X className="w-3.5 h-3.5" />
-                <span>CLEAR NL FILTER</span>
+                <X className="w-3 h-3" />
+                <span>Clear</span>
               </button>
             </div>
           )}
