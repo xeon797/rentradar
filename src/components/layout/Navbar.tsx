@@ -80,40 +80,21 @@ export const Navbar: React.FC = () => {
           })}
         </nav>
 
-        {/* Top-Right: Built for AIgnite 2026 Badge & Action Tools */}
-        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-          {/* Top-Right: Official "Built for AIgnite 2026" Badge */}
+        {/* Top-Right: Prominent Built for AIgnite 2026 Badge */}
+        <div className="flex items-center gap-2 shrink-0">
           <div
-            className="flex items-center h-8 sm:h-9 border border-carbon/30 bg-white px-2 py-0.5 shadow-docket-sm hover:border-carbon transition-colors"
+            className="flex items-center h-11 sm:h-12 border-2 border-carbon bg-white px-3 py-1 shadow-docket-sm hover:border-carbon transition-all"
             title="Official Buildathon Entry — Built for AIgnite 2026"
           >
             <Image
               src="/built-for-aignite-2026.png"
               alt="Built for AIgnite 2026"
-              width={116}
-              height={32}
-              className="h-6 sm:h-7 w-auto object-contain"
+              width={160}
+              height={48}
+              className="h-8 sm:h-9 w-auto object-contain"
               priority
             />
           </div>
-
-          {/* Interactive Identity & Persona Switcher */}
-          <IdentityStatusModal />
-
-          {/* Interactive Judge 2-Minute Proof HUD */}
-          <JudgeTourDrawer />
-
-          {/* Quick Primary Action */}
-          <Link href="/inspector" className="hidden sm:inline-flex">
-            <Button
-              variant="primary"
-              size="sm"
-              className="font-mono text-xs flex items-center gap-1 tracking-normal font-bold"
-            >
-              <span>INSPECT AD</span>
-              <ArrowUpRight className="h-3.5 w-3.5" />
-            </Button>
-          </Link>
 
           {/* Mobile Menu Button */}
           <button

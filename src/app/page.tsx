@@ -2,177 +2,24 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Search,
   Scan,
   ArrowRight,
   ArrowUpRight,
+  Camera,
+  AlertTriangle,
+  ShieldCheck,
+  Zap,
+  FileText,
+  Scale,
+  Radar,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { DocketCard } from "@/components/ui/docket-card";
-import { VerificationStamp } from "@/components/ui/verification-stamp";
 import { SEED_PROPERTIES } from "@/lib/data/seed-properties";
 import { BD_NEIGHBORHOOD_BENCHMARKS } from "@/lib/data/bd-neighborhood-benchmarks";
-
-// Pre-seeded Bangladesh Rental Ad Scenarios for Instant Hero Demo
-type ScenarioKey = "A" | "B" | "C";
-
-interface HeroScenario {
-  key: ScenarioKey;
-  tag: string;
-  badgeLabel: string;
-  severity: "CRITICAL" | "MODERATE" | "LOW";
-  score: number;
-  docketNumber: string;
-  postSource: string;
-  location: string;
-  claimedRent: string;
-  adTextRaw: string;
-  adLanguage: "Bangla" | "Bangla / English" | "English";
-  summary: string;
-  flags: Array<{
-    code: string;
-    title: string;
-    severity: "CRITICAL" | "MODERATE" | "LOW";
-    detail: string;
-    quote?: string;
-  }>;
-  specs: {
-    beds: string;
-    advance: string;
-    serviceCharge: string;
-    paymentTrap: string;
-    dhashCollision: string;
-  };
-}
-
-const SCENARIOS: Record<ScenarioKey, HeroScenario> = {
-  A: {
-    key: "A",
-    tag: "SCENARIO A // BASHUNDHARA FAKE TO-LET",
-    badgeLabel: "CRITICAL FRAUD SIGNALS",
-    severity: "CRITICAL",
-    score: 88,
-    docketNumber: "RR-INSP-2026-088",
-    postSource: "Facebook Group: বসুন্ধরা আবাসিক এলাকা ফ্ল্যাট ও সাবলেট",
-    location: "Bashundhara R/A, Block C, Dhaka",
-    claimedRent: "৳11,500 / month",
-    adLanguage: "Bangla",
-    adTextRaw:
-      "জরুরী বসুন্ধরা আবাসিক এলাকায় ৩ রুমের লাক্সারি ফুল ফার্নিশড ফ্ল্যাট ভাড়া হবে মাত্র ১১,৫০০ টাকায়। সরাসরি ওনার দেশের বাইরে থাকায় কম ভাড়ায় দেওয়া হবে। বাসা দেখতে যাওয়ার পূর্বে বিকাশে ৩০০০ টাকা ভিজিটিং গেটপাস বুকিং ফি দিতে হবে। এই নম্বরে সেন্ড মানি করুন: 01712-984XXX। বুকিং ছাড়া কাউকে ঠিকানা বা ফ্ল্যাট দেখানো হবে না।",
-    summary:
-      "CRITICAL RISK: Advance booking fee demand via mobile money before in-person inspection. Stolen photo matches existing Gulshan luxury apartment listing.",
-    flags: [
-      {
-        code: "FLAG_01: PRE_VISIT_BKASH_DEMAND",
-        title: "Advance bKash Visiting Fee Trap",
-        severity: "CRITICAL",
-        detail:
-          "Advertiser explicitly demands ৳3,000 personal bKash transfer as a condition to reveal exact flat address or grant building entry.",
-        quote: '"বাসা দেখতে যাওয়ার পূর্বে বিকাশে ৩০০০ টাকা ভিজিটিং গেটপাস বুকিং ফি দিতে হবে"',
-      },
-      {
-        code: "FLAG_02: DHASH_IMAGE_COLLISION",
-        title: "Perceptual Photo Match: Gulshan-2 Listing",
-        severity: "CRITICAL",
-        detail:
-          "64-bit dHash collision with Hamming distance = 1 (98.4% visual identity match) with listing RR-DHK-041 located in Gulshan-2.",
-      },
-      {
-        code: "FLAG_03: SEVERE_PRICE_ANOMALY",
-        title: "Price Anomaly: -66.2% Below Market Median",
-        severity: "CRITICAL",
-        detail:
-          "Claimed 3BHK rent of ৳11,500/mo is statistically anomalous against the Bashundhara R/A median of ৳34,000/mo.",
-      },
-    ],
-    specs: {
-      beds: "3 BHK (Claimed Furnished)",
-      advance: "৳3,000 Mobile Money First",
-      serviceCharge: "Not Disclosed / Vague",
-      paymentTrap: "bKash Personal Send-Money Required",
-      dhashCollision: "98.4% Match (Gulshan RR-DHK-041)",
-    },
-  },
-  B: {
-    key: "B",
-    tag: "SCENARIO B // SYLHET UPOSHAHAR SUBLET",
-    badgeLabel: "MODERATE RISK ANOMALIES",
-    severity: "MODERATE",
-    score: 46,
-    docketNumber: "RR-INSP-2026-042",
-    postSource: "Street Signboard Photo: শাহজালাল উপশহর মেইন রোড",
-    location: "Shahjalal Uposhahar, Block D, Sylhet",
-    claimedRent: "৳8,500 / month",
-    adLanguage: "Bangla / English",
-    adTextRaw:
-      "To-Let for Executive Bachelor or Small Family in Uposhahar Block D. 1 Master Bed + Attached Bath with separate entrance. Base Rent ৳8,500 only. Advance 3 months. Gas, WASA, Lift & guard service charge will be split among tenants each month dynamically.",
-    summary:
-      "MODERATE ANOMALIES: Unitemized floating utility clause exposes tenant to unregulated monthly bill shocks. Advance deposit requirement (3 months) exceeds standard norms.",
-    flags: [
-      {
-        code: "FLAG_01: HIDDEN_SERVICE_TRAP",
-        title: "Unmetered Utility Surcharge Exposure",
-        severity: "MODERATE",
-        detail:
-          "Base rent of ৳8,500 excludes unitemized dynamic bill sharing. Real monthly cost projected at ৳12,000+ without individual sub-meters.",
-      },
-      {
-        code: "FLAG_02: STATUTORY_DEPOSIT_SCRUTINY",
-        title: "Advance Deposit Terms Exceed Norms",
-        severity: "MODERATE",
-        detail:
-          "3 months cash advance requested without clear provision for statutory rent receipt as prescribed under Sec 13 of Premises Rent Control Act 1991.",
-      },
-    ],
-    specs: {
-      beds: "1 Bed Sublet Unit",
-      advance: "3 Months (৳25,500 upfront)",
-      serviceCharge: "Dynamic / Floating (Unitemized)",
-      paymentTrap: "No Sub-meter, Shared Overhead",
-      dhashCollision: "0 Collisions Detected",
-    },
-  },
-  C: {
-    key: "C",
-    tag: "SCENARIO C // DHANMONDI ROAD 9 VERIFIED",
-    badgeLabel: "VERIFIED STATUTORY COMPLIANT",
-    severity: "LOW",
-    score: 12,
-    docketNumber: "RR-INSP-2026-012",
-    postSource: "Landlord Direct Document Submission",
-    location: "Road 9/A, Dhanmondi, Dhaka",
-    claimedRent: "৳38,000 / month",
-    adLanguage: "English",
-    adTextRaw:
-      "Dhanmondi 9/A, 1450 sqft 3-bed flat with dedicated car parking. Base Rent: ৳38,000, Fixed Service Charge: ৳5,500 (Generator, 24/7 Security, Lift). DESCO prepaid meter installed. Advance: 2 months. Formal written agreement with official rent receipts provided.",
-    summary:
-      "VERIFIED COMPLIANT: Validated DESCO electricity bill matching owner NID and physical premises. 0 duplicate image collisions. Terms fully comply with 1991 Rent Act.",
-    flags: [
-      {
-        code: "EVIDENCE_01: DESCO_DOC_VERIFIED",
-        title: "Prepaid Electric Meter & Deed Match",
-        severity: "LOW",
-        detail:
-          "Owner submitted official DESCO meter account statement matching property address and cadastral plot number.",
-      },
-      {
-        code: "EVIDENCE_02: STATUTORY_COMPLIANCE",
-        title: "Advance & Service Charges Transparent",
-        severity: "LOW",
-        detail:
-          "2 months advance strictly within Dhaka residential norms. Service charge is explicitly itemized with formal written receipts.",
-      },
-    ],
-    specs: {
-      beds: "3 Bed + 3 Bath (1450 sqft)",
-      advance: "2 Months (Standard Deposit)",
-      serviceCharge: "৳5,500 (Itemized Fixed)",
-      paymentTrap: "None — Official Bank Transfer",
-      dhashCollision: "0 Collisions (Unique Original Photos)",
-    },
-  },
-};
+import { cn } from "@/lib/utils";
 
 const BENCHMARK_ROWS = Object.values(BD_NEIGHBORHOOD_BENCHMARKS).map((b) => {
   const realMedian = `৳${b.typical3BedMin.toLocaleString()} – ৳${Math.round(b.typical3BedMin * 1.35).toLocaleString()}`;
@@ -198,9 +45,8 @@ const BENCHMARK_ROWS = Object.values(BD_NEIGHBORHOOD_BENCHMARKS).map((b) => {
 });
 
 export default function HomePage() {
-  const [selectedScenario, setSelectedScenario] = React.useState<ScenarioKey>("A");
+  const [heroDemoMode, setHeroDemoMode] = React.useState<"SCAM" | "VERIFIED">("SCAM");
   const [showAllBenchmarks, setShowAllBenchmarks] = React.useState(false);
-  const scenario = SCENARIOS[selectedScenario];
 
   const displayedBenchmarks = showAllBenchmarks
     ? BENCHMARK_ROWS
@@ -255,8 +101,47 @@ export default function HomePage() {
               stolen photos, calculate true monthly expenses, and enforce your statutory rights under Bangladesh law.
             </p>
 
+            {/* Visual 3-Step Process Flow Graphic */}
+            <div className="border border-carbon bg-surface p-3 shadow-docket-sm space-y-2">
+              <div className="flex items-center justify-between text-[11px] font-mono text-muted-ink uppercase">
+                <span className="font-bold text-carbon">// HOW RENTRADAR PROTECTS YOU IN 3 STEPS</span>
+                <span className="text-[10px] bg-paper px-1.5 py-0.5 border border-carbon/30">ZERO COST</span>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1 font-mono text-xs">
+                <div className="flex items-center gap-2.5 border border-carbon/20 bg-paper p-2.5">
+                  <div className="h-8 w-8 rounded-none bg-carbon text-surface flex items-center justify-center shrink-0">
+                    <Camera className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-carbon text-[11px]">1. Snap / Upload</div>
+                    <div className="text-[10px] text-muted-ink">To-Let ad or signboard</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2.5 border border-carbon/20 bg-paper p-2.5">
+                  <div className="h-8 w-8 rounded-none bg-radar text-carbon flex items-center justify-center shrink-0 border border-carbon">
+                    <Radar className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-carbon text-[11px]">2. 64-Bit Scan</div>
+                    <div className="text-[10px] text-muted-ink">dHash &amp; Gemini OCR</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2.5 border border-carbon/20 bg-paper p-2.5">
+                  <div className="h-8 w-8 rounded-none bg-evidence-green text-surface flex items-center justify-center shrink-0">
+                    <ShieldCheck className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-carbon text-[11px]">3. Instant Verdict</div>
+                    <div className="text-[10px] text-muted-ink">Scam alert &amp; law guard</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Primary Action Button Group */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
+            <div className="flex flex-wrap items-center gap-3 pt-1">
               <Link href="/inspector">
                 <Button
                   variant="primary"
@@ -281,222 +166,319 @@ export default function HomePage() {
               </Link>
             </div>
 
-            {/* Streamlined Feature Pills */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 border border-carbon bg-surface divide-y sm:divide-y-0 sm:divide-x divide-carbon shadow-docket-sm mt-8">
-              <div className="p-3 space-y-1">
-                <div className="font-mono text-[10px] text-muted-ink uppercase font-semibold">
-                  64-BIT dHASH
+            {/* Streamlined Feature Pills with Graphic Icons */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 border border-carbon bg-surface divide-y sm:divide-y-0 sm:divide-x divide-carbon shadow-docket-sm mt-6">
+              <div className="p-3.5 space-y-1.5">
+                <div className="flex items-center gap-1.5 font-mono text-[10px] text-carbon font-bold uppercase">
+                  <div className="h-5 w-5 bg-radar text-carbon flex items-center justify-center border border-carbon">
+                    <Camera className="h-3 w-3" />
+                  </div>
+                  <span>64-BIT dHASH</span>
                 </div>
                 <div className="font-display font-bold text-xs uppercase text-carbon leading-snug">
-                  Stolen Photo Collision
+                  Stolen Photo Radar
                 </div>
-                <div className="text-[11px] font-mono text-muted-ink">
-                  Catches recycled listing photos
+                <div className="text-[11px] font-mono text-muted-ink leading-tight">
+                  Detects recycled listing photos across Dhaka, Sylhet &amp; Chattogram.
                 </div>
               </div>
 
-              <div className="p-3 space-y-1">
-                <div className="font-mono text-[10px] text-muted-ink uppercase font-semibold">
-                  BILINGUAL OCR
+              <div className="p-3.5 space-y-1.5">
+                <div className="flex items-center gap-1.5 font-mono text-[10px] text-carbon font-bold uppercase">
+                  <div className="h-5 w-5 bg-carbon text-surface flex items-center justify-center">
+                    <Zap className="h-3 w-3" />
+                  </div>
+                  <span>BILINGUAL OCR</span>
                 </div>
                 <div className="font-display font-bold text-xs uppercase text-carbon leading-snug">
-                  Multimodal Extraction
+                  Gemini Vision
                 </div>
-                <div className="text-[11px] font-mono text-muted-ink">
-                  Bangla &amp; English claim parsing
+                <div className="text-[11px] font-mono text-muted-ink leading-tight">
+                  Extracts Bangla &amp; English To-Let claims in under 800ms.
                 </div>
               </div>
 
-              <div className="p-3 space-y-1">
-                <div className="font-mono text-[10px] text-muted-ink uppercase font-semibold">
-                  1991 RENT ACT
+              <div className="p-3.5 space-y-1.5">
+                <div className="flex items-center gap-1.5 font-mono text-[10px] text-carbon font-bold uppercase">
+                  <div className="h-5 w-5 bg-evidence-green text-surface flex items-center justify-center">
+                    <Scale className="h-3 w-3" />
+                  </div>
+                  <span>1991 RENT ACT</span>
                 </div>
                 <div className="font-display font-bold text-xs uppercase text-carbon leading-snug">
-                  Statutory Protection
+                  Statutory Defense
                 </div>
-                <div className="text-[11px] font-mono text-muted-ink font-bangla">
-                  আইন অনুযায়ী অগ্রিম ও উচ্ছেদ রক্ষা
+                <div className="text-[11px] font-mono text-muted-ink font-bangla leading-tight">
+                  অগ্রিম ভাড়া ও উচ্ছেদ বিরোধী নাগরিক সুরক্ষা।
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Column (5 cols on lg): Interactive "Live Inspection Docket Preview" */}
-          <div className="lg:col-span-5 space-y-4">
-            
-            {/* Clean Live Radar Header */}
-            <div className="flex items-center justify-between border-2 border-carbon bg-surface p-2.5 shadow-docket-sm">
-              <div className="flex items-center gap-2 font-mono text-xs font-bold text-carbon">
-                <span className="h-2.5 w-2.5 bg-radar border border-carbon" />
-                <span>LIVE RADAR FORENSIC PREVIEW</span>
-              </div>
-              <div className="font-mono text-[11px] text-muted-ink">
-                <span>{SEED_PROPERTIES.length} DOCKETS INDEXED</span>
+          {/* Right Column (5 cols on lg): Clean Graphic Visual Showcase */}
+          <div className="lg:col-span-5 space-y-3">
+            {/* 2-Mode Interactive Showcase Switcher */}
+            <div className="border-2 border-carbon bg-paper p-1.5 shadow-docket-sm">
+              <div className="grid grid-cols-2 gap-1.5 font-mono text-xs font-bold">
+                <button
+                  type="button"
+                  onClick={() => setHeroDemoMode("SCAM")}
+                  className={cn(
+                    "flex items-center justify-center gap-1.5 py-2 px-3 border transition-all text-center",
+                    heroDemoMode === "SCAM"
+                      ? "bg-evidence-red text-white border-evidence-red shadow-docket-sm"
+                      : "bg-surface text-carbon border-carbon/30 hover:border-carbon hover:bg-paper"
+                  )}
+                >
+                  <AlertTriangle className="h-3.5 w-3.5" />
+                  <span>[ 🚨 CAUGHT SCAM AD ]</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setHeroDemoMode("VERIFIED")}
+                  className={cn(
+                    "flex items-center justify-center gap-1.5 py-2 px-3 border transition-all text-center",
+                    heroDemoMode === "VERIFIED"
+                      ? "bg-evidence-green text-white border-evidence-green shadow-docket-sm"
+                      : "bg-surface text-carbon border-carbon/30 hover:border-carbon hover:bg-paper"
+                  )}
+                >
+                  <ShieldCheck className="h-3.5 w-3.5" />
+                  <span>[ 🛡️ VERIFIED LISTING ]</span>
+                </button>
               </div>
             </div>
 
-            {/* Interactive Scenario Switcher Header */}
-            <div className="border border-carbon bg-paper p-2 space-y-1.5">
-              <div className="flex items-center justify-between text-[11px] font-mono">
-                <span className="font-bold text-carbon uppercase">// SELECT JUDGE SCENARIO:</span>
-                <span className="text-muted-ink text-[10px]">1-CLICK LIVE AUDIT</span>
-              </div>
-              <div className="grid grid-cols-3 gap-1.5 font-mono text-xs">
-                {(["A", "B", "C"] as ScenarioKey[]).map((key) => {
-                  const s = SCENARIOS[key];
-                  const isCurrent = selectedScenario === key;
-                  return (
-                    <button
-                      key={key}
-                      type="button"
-                      onClick={() => setSelectedScenario(key)}
-                      className={`p-2 border text-left transition-all ${
-                        isCurrent
-                          ? "bg-carbon text-surface border-carbon shadow-docket-sm font-bold"
-                          : "bg-surface text-carbon border-carbon/40 hover:border-carbon hover:bg-paper"
-                      }`}
-                    >
-                      <div className="text-[10px] flex items-center justify-between">
-                        <span>CASE {key}</span>
-                        <span
-                          className={`h-2 w-2 rounded-none ${
-                            s.severity === "CRITICAL"
-                              ? "bg-evidence-red"
-                              : s.severity === "MODERATE"
-                              ? "bg-evidence-amber"
-                              : "bg-evidence-green"
-                          }`}
-                        />
-                      </div>
-                      <div className="truncate text-[11px] mt-0.5">
-                        {key === "A" ? "Bashundhara" : key === "B" ? "Sylhet Sublet" : "Dhanmondi"}
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Forensic Inspection Docket Container */}
-            <DocketCard
-              hazardStripe={scenario.severity === "CRITICAL"}
-              shadow="default"
-              docketId={scenario.docketNumber}
-              docketTitle={scenario.tag}
-              headerAction={
-                <VerificationStamp
-                  riskSeverity={scenario.severity}
-                  label={scenario.badgeLabel}
-                  size="sm"
+            {/* Main Visual Showcase Frame */}
+            <div className="border-2 border-carbon bg-surface shadow-docket overflow-hidden">
+              {/* Graphic Photography & Radar Scanner HUD */}
+              <div className="relative aspect-[16/10] w-full overflow-hidden bg-carbon border-b-2 border-carbon">
+                <Image
+                  src={
+                    heroDemoMode === "SCAM"
+                      ? "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80"
+                      : "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80"
+                  }
+                  alt={heroDemoMode === "SCAM" ? "Scammed Property Photo" : "Verified Rental Property"}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 500px"
+                  className="object-cover opacity-90 transition-all duration-300"
+                  priority
                 />
-              }
-              className="bg-surface"
-            >
-              <div className="space-y-4">
-                {/* Score & Anomaly Summary Bar */}
-                <div className="flex items-center justify-between border border-carbon bg-paper p-3">
-                  <div>
-                    <div className="text-[10px] font-mono text-muted-ink uppercase">
-                      Risk Anomaly Score
-                    </div>
-                    <div className="font-mono text-2xl font-bold tracking-tight text-carbon">
-                      {scenario.score}
-                      <span className="text-xs text-muted-ink font-normal"> / 100</span>
-                    </div>
+
+                {/* Animated Laser Scanning Line */}
+                <div
+                  className={cn(
+                    "absolute inset-x-0 h-1 z-10 animate-scanline pointer-events-none",
+                    heroDemoMode === "SCAM"
+                      ? "bg-gradient-to-r from-transparent via-evidence-red to-transparent shadow-[0_0_8px_#DC2626]"
+                      : "bg-gradient-to-r from-transparent via-radar to-transparent shadow-[0_0_8px_#FACC15]"
+                  )}
+                />
+
+                {/* Radar Targeting Reticle Corner Brackets */}
+                <div className="absolute inset-2 pointer-events-none z-10 flex flex-col justify-between">
+                  <div className="flex justify-between">
+                    <span className="font-mono text-sm font-bold text-radar">┌──</span>
+                    <span className="font-mono text-sm font-bold text-radar">──┐</span>
                   </div>
-                  <div className="text-right">
-                    <div className="text-[10px] font-mono text-muted-ink uppercase">
-                      Claimed Rent
+                  <div className="flex justify-between">
+                    <span className="font-mono text-sm font-bold text-radar">└──</span>
+                    <span className="font-mono text-sm font-bold text-radar">──┘</span>
+                  </div>
+                </div>
+
+                {/* Top Badge: Detection Status Stamp */}
+                <div className="absolute top-3 left-3 z-20">
+                  {heroDemoMode === "SCAM" ? (
+                    <div className="flex items-center gap-1.5 bg-evidence-red text-white border border-carbon px-2.5 py-1 font-mono text-[11px] font-bold shadow-docket-sm">
+                      <AlertTriangle className="h-3.5 w-3.5" />
+                      <span>STOLEN PHOTO DETECTED (98.4% MATCH)</span>
                     </div>
-                    <div className="font-mono text-sm font-bold text-carbon">
-                      {scenario.claimedRent}
+                  ) : (
+                    <div className="flex items-center gap-1.5 bg-evidence-green text-white border border-carbon px-2.5 py-1 font-mono text-[11px] font-bold shadow-docket-sm">
+                      <ShieldCheck className="h-3.5 w-3.5" />
+                      <span>MUNICIPAL AUDIT PASSED</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Bottom Overlay Pill: Location & Photo Origin */}
+                <div className="absolute bottom-3 inset-x-3 z-20 flex items-center justify-between bg-carbon/90 text-surface backdrop-blur-sm border border-carbon px-2.5 py-1.5 font-mono text-[11px]">
+                  <div className="truncate">
+                    {heroDemoMode === "SCAM" ? (
+                      <span>📍 Bashundhara R/A (Reused Gulshan Photo)</span>
+                    ) : (
+                      <span>📍 Dhanmondi Road 9/A, Dhaka</span>
+                    )}
+                  </div>
+                  <div className="shrink-0 font-bold text-radar">
+                    {heroDemoMode === "SCAM" ? "Hamming Diff: 1" : "DESCO Meter: Valid"}
+                  </div>
+                </div>
+              </div>
+
+              {/* Price Reality Comparison Bar */}
+              <div className="p-3 bg-paper border-b border-carbon">
+                <div className="grid grid-cols-2 gap-2 text-center">
+                  <div className="border border-carbon bg-surface p-2 shadow-docket-sm">
+                    <div className="text-[10px] font-mono text-muted-ink uppercase">
+                      {heroDemoMode === "SCAM" ? "Claimed Bait Rent" : "Verified Base Rent"}
+                    </div>
+                    <div className="font-mono text-lg font-bold text-carbon">
+                      {heroDemoMode === "SCAM" ? "৳11,500/mo" : "৳28,000/mo"}
                     </div>
                     <div className="text-[10px] font-mono text-muted-ink">
-                      {scenario.location}
+                      {heroDemoMode === "SCAM" ? "3 Bed Furnished Flat" : "3 Bed Fair Market Rate"}
+                    </div>
+                  </div>
+
+                  <div
+                    className={cn(
+                      "border p-2 shadow-docket-sm",
+                      heroDemoMode === "SCAM"
+                        ? "border-evidence-red bg-red-50 text-carbon"
+                        : "border-evidence-green bg-emerald-50 text-carbon"
+                    )}
+                  >
+                    <div className="text-[10px] font-mono uppercase font-semibold">
+                      {heroDemoMode === "SCAM" ? "Area Market Median" : "Estimated Total Outflow"}
+                    </div>
+                    <div
+                      className={cn(
+                        "font-mono text-lg font-bold",
+                        heroDemoMode === "SCAM" ? "text-evidence-red" : "text-evidence-green"
+                      )}
+                    >
+                      {heroDemoMode === "SCAM" ? "৳34,000/mo" : "৳33,500/mo"}
+                    </div>
+                    <div className="text-[10px] font-mono font-bold">
+                      {heroDemoMode === "SCAM" ? "🚨 -66% Fake Price Anomaly" : "✓ 0 Hidden Utility Surprises"}
                     </div>
                   </div>
                 </div>
+              </div>
 
-                {/* Raw Claim Preview Box */}
-                <div className="border border-carbon/60 bg-paper/40 p-2.5 text-xs space-y-1 font-mono">
-                  <div className="flex items-center justify-between text-[10px] text-muted-ink">
-                    <span className="font-bold uppercase">// CAPTURED TO-LET TEXT</span>
-                    <span>{scenario.postSource.split(":")[0]}</span>
-                  </div>
-                  <p className="font-bilingual text-carbon leading-snug text-[11px] italic line-clamp-2">
-                    &ldquo;{scenario.adTextRaw}&rdquo;
-                  </p>
+              {/* 3 Visual Forensic Findings Badges */}
+              <div className="p-3 space-y-2 bg-surface">
+                <div className="text-[10px] font-mono font-bold uppercase text-muted-ink flex items-center justify-between">
+                  <span>{heroDemoMode === "SCAM" ? "// FORENSIC ANOMALY PROOFS" : "// CIVIC TRUST SIGNALS"}</span>
+                  <span className="text-carbon font-bold">
+                    {heroDemoMode === "SCAM" ? "3 CRITICAL FLAGS" : "100% COMPLIANT"}
+                  </span>
                 </div>
 
-                {/* Forensic Evidence Flags */}
-                <div className="space-y-1.5">
-                  <div className="text-[11px] font-mono font-bold uppercase text-carbon tracking-wider flex items-center justify-between">
-                    <span>EVIDENCE FLAGS ({scenario.flags.length})</span>
-                    <span className="text-[10px] text-muted-ink">DETERMINISTIC</span>
-                  </div>
-                  <div className="space-y-1.5">
-                    {scenario.flags.map((flag, idx) => (
-                      <div
-                        key={idx}
-                        className={`border p-2 text-xs font-mono transition-colors ${
-                          flag.severity === "CRITICAL"
-                            ? "border-evidence-red bg-red-50/70 text-carbon"
-                            : flag.severity === "MODERATE"
-                            ? "border-evidence-amber bg-amber-50/70 text-carbon"
-                            : "border-evidence-green bg-emerald-50/70 text-carbon"
-                        }`}
-                      >
-                        <div className="flex items-center justify-between font-bold text-[11px]">
-                          <span className="truncate">{flag.title}</span>
-                          <span
-                            className={`text-[9px] uppercase px-1 py-0.2 border ${
-                              flag.severity === "CRITICAL"
-                                ? "bg-evidence-red text-surface border-evidence-red"
-                                : flag.severity === "MODERATE"
-                                ? "bg-evidence-amber text-surface border-evidence-amber"
-                                : "bg-evidence-green text-surface border-evidence-green"
-                            }`}
-                          >
-                            {flag.severity}
-                          </span>
+                {heroDemoMode === "SCAM" ? (
+                  <div className="space-y-1.5 font-mono text-xs">
+                    <div className="flex items-start gap-2 border border-evidence-red bg-red-50/70 p-2 text-carbon">
+                      <Camera className="h-4 w-4 text-evidence-red shrink-0 mt-0.5" />
+                      <div>
+                        <div className="font-bold text-[11px] text-evidence-red">
+                          Stolen Listing Photography
                         </div>
-                        <div className="text-[11px] text-muted-ink mt-0.5 font-sans leading-tight">
-                          {flag.detail}
+                        <div className="text-[11px] text-muted-ink font-sans">
+                          Photo identical to Gulshan-2 listing RR-DHK-041 (64-bit dHash collision).
                         </div>
                       </div>
-                    ))}
-                  </div>
-                </div>
+                    </div>
 
-                {/* Structured Extraction Metadata Specs */}
-                <div className="grid grid-cols-2 gap-2 text-[11px] font-mono border-t border-carbon/20 pt-2.5">
-                  <div className="bg-paper p-1.5 border border-carbon/20">
-                    <span className="text-muted-ink text-[10px] block">PHOTO COLLISION:</span>
-                    <span className="font-bold text-carbon truncate block">
-                      {scenario.specs.dhashCollision}
-                    </span>
-                  </div>
-                  <div className="bg-paper p-1.5 border border-carbon/20">
-                    <span className="text-muted-ink text-[10px] block">PAYMENT SECURITY:</span>
-                    <span className="font-bold text-carbon truncate block">
-                      {scenario.specs.paymentTrap}
-                    </span>
-                  </div>
-                </div>
+                    <div className="flex items-start gap-2 border border-evidence-red bg-red-50/70 p-2 text-carbon">
+                      <AlertTriangle className="h-4 w-4 text-evidence-red shrink-0 mt-0.5" />
+                      <div>
+                        <div className="font-bold text-[11px] text-evidence-red">
+                          Advance bKash Gatepass Trap
+                        </div>
+                        <div className="text-[11px] text-muted-ink font-sans">
+                          Demands ৳3,000 send-money before revealing address or scheduling in-person visit.
+                        </div>
+                      </div>
+                    </div>
 
-                {/* Callout Link to Full Inspector */}
-                <Link
-                  href="/inspector"
-                  className="flex items-center justify-between bg-radar text-carbon border border-carbon p-2 font-mono text-xs font-bold shadow-docket-sm hover:bg-radar-hover transition-colors"
-                >
-                  <span>TEST CUSTOM TO-LET SCREENSHOT</span>
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
+                    <div className="flex items-start gap-2 border border-evidence-red bg-red-50/70 p-2 text-carbon">
+                      <Scale className="h-4 w-4 text-evidence-red shrink-0 mt-0.5" />
+                      <div>
+                        <div className="font-bold text-[11px] text-evidence-red">
+                          1991 Rent Control Act Breach
+                        </div>
+                        <div className="text-[11px] text-muted-ink font-sans">
+                          Violates Section 10 (unlawful premium demand prior to lease execution).
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-1.5 font-mono text-xs">
+                    <div className="flex items-start gap-2 border border-evidence-green bg-emerald-50/70 p-2 text-carbon">
+                      <Zap className="h-4 w-4 text-evidence-green shrink-0 mt-0.5" />
+                      <div>
+                        <div className="font-bold text-[11px] text-evidence-green">
+                          DESCO Utility Billing Verified
+                        </div>
+                        <div className="text-[11px] text-muted-ink font-sans">
+                          Official meter account # matched with registered land deed and National ID.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-2 border border-evidence-green bg-emerald-50/70 p-2 text-carbon">
+                      <FileText className="h-4 w-4 text-evidence-green shrink-0 mt-0.5" />
+                      <div>
+                        <div className="font-bold text-[11px] text-evidence-green">
+                          Statutory Rent Receipt Guaranteed
+                        </div>
+                        <div className="text-[11px] text-muted-ink font-sans">
+                          Landlord issues Section 13 dual-slip legal rent receipts (ভাড়ার রশিদ).
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-2 border border-evidence-green bg-emerald-50/70 p-2 text-carbon">
+                      <ShieldCheck className="h-4 w-4 text-evidence-green shrink-0 mt-0.5" />
+                      <div>
+                        <div className="font-bold text-[11px] text-evidence-green">
+                          Zero Advance Escrow Risk
+                        </div>
+                        <div className="text-[11px] text-muted-ink font-sans">
+                          Guaranteed in-person inspection before any security deposit or token payment.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Direct Action Deep Link */}
+                <div className="pt-1">
+                  {heroDemoMode === "SCAM" ? (
+                    <Link
+                      href="/inspector?preset=preset-bashundhara-scam"
+                      className="flex items-center justify-between bg-radar text-carbon border-2 border-carbon p-2.5 font-mono text-xs font-bold shadow-docket-sm hover:bg-radar-hover transition-colors"
+                    >
+                      <span className="flex items-center gap-2">
+                        <Scan className="h-4 w-4" />
+                        <span>TEST THIS SCAM IN AI INSPECTOR</span>
+                      </span>
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  ) : (
+                    <Link
+                      href="/discover"
+                      className="flex items-center justify-between bg-carbon text-surface border-2 border-carbon p-2.5 font-mono text-xs font-bold shadow-docket-sm hover:bg-zinc-800 transition-colors"
+                    >
+                      <span className="flex items-center gap-2">
+                        <Search className="h-4 w-4" />
+                        <span>EXPLORE VERIFIED DHAKA PROPERTIES</span>
+                      </span>
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  )}
+                </div>
               </div>
-            </DocketCard>
+            </div>
           </div>
         </div>
       </section>
+
 
       {/* =========================================================================
           SECTION 2: THE 5-STAGE EVIDENCE PIPELINE MATRIX
