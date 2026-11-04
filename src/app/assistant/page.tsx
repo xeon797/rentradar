@@ -188,39 +188,38 @@ export default function AssistantPage() {
     <div className="w-full bg-paper min-h-[calc(100vh-4rem)] pb-20">
       {/* Top Banner & Header */}
       <div className="border-b-2 border-carbon bg-surface px-4 py-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="space-y-1">
+        <div className="mx-auto max-w-7xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="space-y-0.5">
             <div className="flex items-center gap-2 font-mono text-[11px] text-muted-ink">
-              <span className="bg-carbon text-surface font-bold px-1.5 py-0.2">MODULE [05]</span>
-              <span>// STATUTORY TENANT DEFENSE ENGINE</span>
-              <span className="text-carbon font-bold">// PREMISES RENT CONTROL ACT, 1991</span>
+              <span className="bg-carbon text-surface font-bold px-1.5 py-0.5 text-[10px]">
+                MODULE 05
+              </span>
+              <span>// STATUTORY TENANT DEFENSE</span>
             </div>
             <h1 className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-carbon">
-              Tenant Protection AI &amp; 1991 Act Clause Auditor
+              Tenant Protection AI &amp; 1991 Act Auditor
             </h1>
           </div>
 
           <div className="flex items-center gap-2 font-mono text-xs">
-            <div className="border border-carbon bg-paper px-3 py-1.5 flex items-center gap-2">
-              <span className="h-2 w-2 bg-evidence-green" />
-              <span className="text-muted-ink">ACT STATUS:</span>
-              <span className="font-bold text-carbon">1991 STATUTE ACTIVE</span>
+            <div className="border border-carbon bg-paper px-2.5 py-1 text-muted-ink text-[11px] shadow-docket-sm">
+              <span className="text-evidence-green font-bold">●</span> Premises Rent Control Act, 1991 (বাড়ি ভাড়া নিয়ন্ত্রণ আইন)
             </div>
           </div>
         </div>
       </div>
 
-      {/* Statutory Disclaimer & Legal Architecture Notice */}
-      <div className="border-b border-carbon/20 bg-carbon text-surface px-4 py-2.5 sm:px-6 lg:px-8 font-mono text-xs">
+      {/* Statutory Notice */}
+      <div className="border-b border-carbon/20 bg-carbon text-surface px-4 py-2 sm:px-6 lg:px-8 font-mono text-xs">
         <div className="mx-auto max-w-7xl flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div className="flex items-center gap-2 text-radar">
-            <Scale className="h-4 w-4 shrink-0" />
-            <span className="font-bold tracking-wide">
-              STATUTORY CITATION SYSTEM // PREMISES RENT CONTROL ACT, 1991 (বাড়ি ভাড়া নিয়ন্ত্রণ আইন, ১৯৯১)
+            <Scale className="h-3.5 w-3.5 shrink-0" />
+            <span className="font-bold text-[11px]">
+              ACT NO. III OF 1991 STATUTORY REPOSITORY // SECTIONS 7, 10, 13, 15, 18, 21 &amp; BERC SUB-METER CODE
             </span>
           </div>
-          <div className="text-[11px] text-zinc-300">
-            Automated legal information &amp; polite negotiation counter-clauses. Not formal judicial representation.
+          <div className="text-[10px] text-zinc-400">
+            Automated legal information &amp; polite negotiation counter-clauses.
           </div>
         </div>
       </div>

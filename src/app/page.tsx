@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import {
   Search,
   Scan,
@@ -200,7 +199,12 @@ const BENCHMARK_ROWS = Object.values(BD_NEIGHBORHOOD_BENCHMARKS).map((b) => {
 
 export default function HomePage() {
   const [selectedScenario, setSelectedScenario] = React.useState<ScenarioKey>("A");
+  const [showAllBenchmarks, setShowAllBenchmarks] = React.useState(false);
   const scenario = SCENARIOS[selectedScenario];
+
+  const displayedBenchmarks = showAllBenchmarks
+    ? BENCHMARK_ROWS
+    : BENCHMARK_ROWS.slice(0, 6);
 
   return (
     <div className="w-full bg-paper">
@@ -214,7 +218,7 @@ export default function HomePage() {
         </div>
         <div className="flex items-center gap-4 text-zinc-400">
           <span>
-            PILOT ZONES: {Object.keys(BD_NEIGHBORHOOD_BENCHMARKS).length} REGIONS // {SEED_PROPERTIES.length} SEED DOCKETS
+            {Object.keys(BD_NEIGHBORHOOD_BENCHMARKS).length} METRO REGIONS • {SEED_PROPERTIES.length} SEED DOCKETS
           </span>
           <span className="hidden sm:inline border-l border-zinc-700 pl-4 text-radar font-bold">
             ZERO PAID API OVERHEAD
@@ -233,7 +237,7 @@ export default function HomePage() {
             {/* Kicker Tag */}
             <div className="inline-flex items-center gap-2 border border-carbon bg-surface px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-wider text-carbon shadow-docket-sm">
               <span className="h-2 w-2 bg-evidence-red animate-pulse" />
-              <span>// BANGLADESH RENTAL FRAUD & SYNDICATE COUNTERMEASURE</span>
+              <span>// FORENSIC SCAM DEFENSE &amp; TENANT RIGHTS</span>
             </div>
 
             {/* Headline */}
@@ -244,12 +248,11 @@ export default function HomePage() {
               </span>
             </h1>
 
-            {/* Bilingual Subheadline */}
-            <p className="text-base sm:text-lg text-muted-ink font-bilingual leading-relaxed">
-              Upload any Facebook &ldquo;To-Let&rdquo; screenshot or street signboard photo.
-              RentRadar extracts Bangla &amp; English claims, runs 64-bit perceptual image hashing
-              (dHash) against known listings across Dhaka, Sylhet &amp; Chattogram, and flags
-              advance-fee traps before you lose money.
+            {/* Concise Subheadline */}
+            <p className="text-base sm:text-lg text-muted-ink font-bilingual leading-relaxed max-w-2xl">
+              Upload any Facebook To-Let screenshot or street signboard photo.
+              RentRadar uses Gemini 2.5 Flash and 64-bit perceptual image hashing (dHash) to expose
+              stolen photos, calculate true monthly expenses, and enforce your statutory rights under Bangladesh law.
             </p>
 
             {/* Primary Action Button Group */}
@@ -278,41 +281,41 @@ export default function HomePage() {
               </Link>
             </div>
 
-            {/* Live Telemetry Bar */}
+            {/* Streamlined Feature Pills */}
             <div className="grid grid-cols-1 sm:grid-cols-3 border border-carbon bg-surface divide-y sm:divide-y-0 sm:divide-x divide-carbon shadow-docket-sm mt-8">
-              <div className="p-3.5 space-y-1">
+              <div className="p-3 space-y-1">
                 <div className="font-mono text-[10px] text-muted-ink uppercase font-semibold">
                   64-BIT dHASH
                 </div>
                 <div className="font-display font-bold text-xs uppercase text-carbon leading-snug">
-                  Duplicate Photo Collision Engine
+                  Stolen Photo Collision
                 </div>
                 <div className="text-[11px] font-mono text-muted-ink">
-                  Catches recycled Facebook photos
+                  Catches recycled listing photos
                 </div>
               </div>
 
-              <div className="p-3.5 space-y-1">
+              <div className="p-3 space-y-1">
                 <div className="font-mono text-[10px] text-muted-ink uppercase font-semibold">
-                  BN + EN OCR
+                  BILINGUAL OCR
                 </div>
                 <div className="font-display font-bold text-xs uppercase text-carbon leading-snug">
-                  Multimodal To-Let Extraction
+                  Multimodal Extraction
                 </div>
                 <div className="text-[11px] font-mono text-muted-ink">
-                  Gemini 2.5 Flash bilingual parser
+                  Bangla &amp; English claim parsing
                 </div>
               </div>
 
-              <div className="p-3.5 space-y-1">
+              <div className="p-3 space-y-1">
                 <div className="font-mono text-[10px] text-muted-ink uppercase font-semibold">
                   1991 RENT ACT
                 </div>
                 <div className="font-display font-bold text-xs uppercase text-carbon leading-snug">
-                  Statutory Deposit &amp; Receipt Rules
+                  Statutory Protection
                 </div>
                 <div className="text-[11px] font-mono text-muted-ink font-bangla">
-                  আইন অনুযায়ী অগ্রিম যাচাই
+                  আইন অনুযায়ী অগ্রিম ও উচ্ছেদ রক্ষা
                 </div>
               </div>
             </div>
@@ -321,44 +324,22 @@ export default function HomePage() {
           {/* Right Column (5 cols on lg): Interactive "Live Inspection Docket Preview" */}
           <div className="lg:col-span-5 space-y-4">
             
-            {/* Built for AIgnite 2026 Badge at the Top Right of Landing Page */}
+            {/* Clean Live Radar Header */}
             <div className="flex items-center justify-between border-2 border-carbon bg-surface p-2.5 shadow-docket-sm">
-              <div className="flex items-center gap-3">
-                <div className="relative h-12 w-28 shrink-0 overflow-hidden border border-carbon bg-paper flex items-center justify-center p-1">
-                  <Image
-                    src="/built-for-aignite-2026.png"
-                    alt="Built for AIgnite 2026"
-                    width={112}
-                    height={44}
-                    className="h-full w-full object-contain"
-                    priority
-                  />
-                </div>
-                <div className="font-mono text-left leading-tight">
-                  <div className="text-[9px] text-muted-ink uppercase font-semibold tracking-wider">
-                    // OFFICIAL BUILDATHON ENTRY
-                  </div>
-                  <div className="font-display font-bold text-xs sm:text-sm text-carbon uppercase tracking-tight">
-                    Built for AIgnite 2026
-                  </div>
-                  <div className="text-[10px] text-evidence-green font-bold flex items-center gap-1">
-                    <span className="h-1.5 w-1.5 rounded-none bg-evidence-green" />
-                    <span>MULTIMODAL CIVIC TRACK</span>
-                  </div>
-                </div>
+              <div className="flex items-center gap-2 font-mono text-xs font-bold text-carbon">
+                <span className="h-2.5 w-2.5 bg-radar border border-carbon" />
+                <span>LIVE RADAR FORENSIC PREVIEW</span>
               </div>
-
-              <div className="hidden sm:block text-right font-mono text-[10px] text-muted-ink border-l border-carbon/20 pl-3">
-                <div>{SEED_PROPERTIES.length} DOCKETS INDEXED</div>
-                <div className="text-carbon font-bold">3 dHASH PAIRS ACTIVE</div>
+              <div className="font-mono text-[11px] text-muted-ink">
+                <span>{SEED_PROPERTIES.length} DOCKETS INDEXED</span>
               </div>
             </div>
 
             {/* Interactive Scenario Switcher Header */}
             <div className="border border-carbon bg-paper p-2 space-y-1.5">
               <div className="flex items-center justify-between text-[11px] font-mono">
-                <span className="font-bold text-carbon uppercase">// CLICK TO TEST JUDGE SCENARIO:</span>
-                <span className="text-muted-ink text-[10px]">1-CLICK LIVE RADAR</span>
+                <span className="font-bold text-carbon uppercase">// SELECT JUDGE SCENARIO:</span>
+                <span className="text-muted-ink text-[10px]">1-CLICK LIVE AUDIT</span>
               </div>
               <div className="grid grid-cols-3 gap-1.5 font-mono text-xs">
                 {(["A", "B", "C"] as ScenarioKey[]).map((key) => {
@@ -416,7 +397,7 @@ export default function HomePage() {
                 <div className="flex items-center justify-between border border-carbon bg-paper p-3">
                   <div>
                     <div className="text-[10px] font-mono text-muted-ink uppercase">
-                      Calculated Anomaly Score
+                      Risk Anomaly Score
                     </div>
                     <div className="font-mono text-2xl font-bold tracking-tight text-carbon">
                       {scenario.score}
@@ -425,7 +406,7 @@ export default function HomePage() {
                   </div>
                   <div className="text-right">
                     <div className="text-[10px] font-mono text-muted-ink uppercase">
-                      Claimed Base Rent
+                      Claimed Rent
                     </div>
                     <div className="font-mono text-sm font-bold text-carbon">
                       {scenario.claimedRent}
@@ -437,27 +418,27 @@ export default function HomePage() {
                 </div>
 
                 {/* Raw Claim Preview Box */}
-                <div className="border border-carbon/60 bg-paper/40 p-3 text-xs space-y-1.5 font-mono">
+                <div className="border border-carbon/60 bg-paper/40 p-2.5 text-xs space-y-1 font-mono">
                   <div className="flex items-center justify-between text-[10px] text-muted-ink">
-                    <span className="font-bold uppercase">// CAPTURED TO-LET TEXT ({scenario.adLanguage})</span>
+                    <span className="font-bold uppercase">// CAPTURED TO-LET TEXT</span>
                     <span>{scenario.postSource.split(":")[0]}</span>
                   </div>
-                  <p className="font-bilingual text-carbon leading-snug text-[11px] italic line-clamp-3">
+                  <p className="font-bilingual text-carbon leading-snug text-[11px] italic line-clamp-2">
                     &ldquo;{scenario.adTextRaw}&rdquo;
                   </p>
                 </div>
 
-                {/* Forensic Discrepancy Evidence Flags */}
-                <div className="space-y-2">
+                {/* Forensic Evidence Flags */}
+                <div className="space-y-1.5">
                   <div className="text-[11px] font-mono font-bold uppercase text-carbon tracking-wider flex items-center justify-between">
-                    <span>EVIDENCE ANOMALY FLAGS ({scenario.flags.length})</span>
-                    <span className="text-[10px] text-muted-ink">DETERMINISTIC RULES</span>
+                    <span>EVIDENCE FLAGS ({scenario.flags.length})</span>
+                    <span className="text-[10px] text-muted-ink">DETERMINISTIC</span>
                   </div>
                   <div className="space-y-1.5">
                     {scenario.flags.map((flag, idx) => (
                       <div
                         key={idx}
-                        className={`border p-2.5 text-xs font-mono transition-colors ${
+                        className={`border p-2 text-xs font-mono transition-colors ${
                           flag.severity === "CRITICAL"
                             ? "border-evidence-red bg-red-50/70 text-carbon"
                             : flag.severity === "MODERATE"
@@ -466,7 +447,7 @@ export default function HomePage() {
                         }`}
                       >
                         <div className="flex items-center justify-between font-bold text-[11px]">
-                          <span className="truncate">{flag.code}</span>
+                          <span className="truncate">{flag.title}</span>
                           <span
                             className={`text-[9px] uppercase px-1 py-0.2 border ${
                               flag.severity === "CRITICAL"
@@ -479,24 +460,16 @@ export default function HomePage() {
                             {flag.severity}
                           </span>
                         </div>
-                        <div className="font-display font-semibold text-xs mt-1 text-carbon">
-                          {flag.title}
-                        </div>
                         <div className="text-[11px] text-muted-ink mt-0.5 font-sans leading-tight">
                           {flag.detail}
                         </div>
-                        {flag.quote && (
-                          <div className="mt-1.5 bg-surface/90 border border-carbon/20 p-1 text-[10px] font-bilingual text-carbon">
-                            Evidence Quote: {flag.quote}
-                          </div>
-                        )}
                       </div>
                     ))}
                   </div>
                 </div>
 
                 {/* Structured Extraction Metadata Specs */}
-                <div className="grid grid-cols-2 gap-2 text-[11px] font-mono border-t border-carbon/20 pt-3">
+                <div className="grid grid-cols-2 gap-2 text-[11px] font-mono border-t border-carbon/20 pt-2.5">
                   <div className="bg-paper p-1.5 border border-carbon/20">
                     <span className="text-muted-ink text-[10px] block">PHOTO COLLISION:</span>
                     <span className="font-bold text-carbon truncate block">
@@ -514,9 +487,9 @@ export default function HomePage() {
                 {/* Callout Link to Full Inspector */}
                 <Link
                   href="/inspector"
-                  className="flex items-center justify-between bg-radar text-carbon border border-carbon p-2.5 font-mono text-xs font-bold shadow-docket-sm hover:bg-radar-hover transition-colors"
+                  className="flex items-center justify-between bg-radar text-carbon border border-carbon p-2 font-mono text-xs font-bold shadow-docket-sm hover:bg-radar-hover transition-colors"
                 >
-                  <span>TEST YOUR OWN TO-LET SCREENSHOT</span>
+                  <span>TEST CUSTOM TO-LET SCREENSHOT</span>
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -548,7 +521,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-5 border border-carbon bg-paper divide-y md:divide-y-0 md:divide-x divide-carbon shadow-docket">
             
             {/* Stage 1 */}
-            <div className="p-4 sm:p-5 space-y-3 bg-surface">
+            <div className="p-4 sm:p-5 space-y-2 bg-surface">
               <div className="flex items-center justify-between font-mono text-xs">
                 <span className="bg-radar text-carbon font-bold px-1.5 py-0.5 border border-carbon text-[10px]">
                   STAGE 01
@@ -556,18 +529,18 @@ export default function HomePage() {
                 <span className="text-muted-ink text-[10px]">GEMINI 2.5</span>
               </div>
               <div className="font-display font-bold text-sm uppercase text-carbon leading-snug">
-                Multimodal Extraction
+                Multimodal OCR
               </div>
               <p className="text-xs text-muted-ink font-sans leading-relaxed">
-                Gemini 2.5 Flash ingests raw Bangla/English screenshots and extracts structured JSON: claimed rent, advance months, unitemized utility clauses, and phone numbers.
+                Extracts structured claims from Bangla &amp; English To-Let posts, detecting deposits and unitemized utility terms.
               </p>
-              <div className="border border-carbon/30 bg-paper p-2 font-mono text-[10px] text-muted-ink">
-                Output: Strict Zod Schema JSON
+              <div className="border border-carbon/30 bg-paper p-1.5 font-mono text-[10px] text-muted-ink">
+                Output: Verified Zod JSON
               </div>
             </div>
 
             {/* Stage 2 */}
-            <div className="p-4 sm:p-5 space-y-3 bg-surface">
+            <div className="p-4 sm:p-5 space-y-2 bg-surface">
               <div className="flex items-center justify-between font-mono text-xs">
                 <span className="bg-carbon text-surface font-bold px-1.5 py-0.5 border border-carbon text-[10px]">
                   STAGE 02
@@ -575,18 +548,18 @@ export default function HomePage() {
                 <span className="text-muted-ink text-[10px]">SHARP</span>
               </div>
               <div className="font-display font-bold text-sm uppercase text-carbon leading-snug">
-                64-Bit dHash Barcode
+                64-Bit dHash
               </div>
               <p className="text-xs text-muted-ink font-sans leading-relaxed">
-                Sharp normalizes the image to 9x8 grayscale pixels and computes horizontal gradient differentials to generate a 64-bit binary perceptual fingerprint.
+                Generates 64-bit gradient barcodes to identify recycled flat photos across cities regardless of crops or filters.
               </p>
-              <div className="border border-carbon/30 bg-paper p-2 font-mono text-[10px] text-muted-ink">
-                Hamming Distance &le; 10 Collision Check
+              <div className="border border-carbon/30 bg-paper p-1.5 font-mono text-[10px] text-muted-ink">
+                Hamming Distance &le; 10
               </div>
             </div>
 
             {/* Stage 3 */}
-            <div className="p-4 sm:p-5 space-y-3 bg-surface">
+            <div className="p-4 sm:p-5 space-y-2 bg-surface">
               <div className="flex items-center justify-between font-mono text-xs">
                 <span className="bg-radar text-carbon font-bold px-1.5 py-0.5 border border-carbon text-[10px]">
                   STAGE 03
@@ -597,15 +570,15 @@ export default function HomePage() {
                 Scam Rules Engine
               </div>
               <p className="text-xs text-muted-ink font-sans leading-relaxed">
-                Zero LLM guesswork. Rule engine checks for advance mobile money demands (&ldquo;বিকাশ বুকিং&rdquo;), vague street addresses, and neighborhood price anomalies.
+                Zero AI hallucinations. Flags pre-visit bKash demands, WhatsApp-only contacts, and anomalous price deviations.
               </p>
-              <div className="border border-carbon/30 bg-paper p-2 font-mono text-[10px] text-muted-ink">
-                Pre-visit bKash = CRITICAL FLAG
+              <div className="border border-carbon/30 bg-paper p-1.5 font-mono text-[10px] text-muted-ink">
+                Pre-visit bKash = CRITICAL
               </div>
             </div>
 
             {/* Stage 4 */}
-            <div className="p-4 sm:p-5 space-y-3 bg-surface">
+            <div className="p-4 sm:p-5 space-y-2 bg-surface">
               <div className="flex items-center justify-between font-mono text-xs">
                 <span className="bg-carbon text-surface font-bold px-1.5 py-0.5 border border-carbon text-[10px]">
                   STAGE 04
@@ -613,18 +586,18 @@ export default function HomePage() {
                 <span className="text-muted-ink text-[10px]">FINANCIAL</span>
               </div>
               <div className="font-display font-bold text-sm uppercase text-carbon leading-snug">
-                True-Cost Calculator
+                True-Cost Engine
               </div>
               <p className="text-xs text-muted-ink font-sans leading-relaxed">
-                Exposes the real Bangladesh move-in shock: base rent + advance deposit + service charge + gas (cylinder vs. Titas) + DESCO prepaid consumption.
+                Reveals the true move-in shock: base rent, advance months, LPG cylinders, and illegal sub-meter overcharges.
               </p>
-              <div className="border border-carbon/30 bg-paper p-2 font-mono text-[10px] text-muted-ink">
-                Move-In Shock vs. Monthly Burn
+              <div className="border border-carbon/30 bg-paper p-1.5 font-mono text-[10px] text-muted-ink">
+                12-Mo Cashflow Schedule
               </div>
             </div>
 
             {/* Stage 5 */}
-            <div className="p-4 sm:p-5 space-y-3 bg-surface">
+            <div className="p-4 sm:p-5 space-y-2 bg-surface">
               <div className="flex items-center justify-between font-mono text-xs">
                 <span className="bg-radar text-carbon font-bold px-1.5 py-0.5 border border-carbon text-[10px]">
                   STAGE 05
@@ -632,13 +605,13 @@ export default function HomePage() {
                 <span className="text-muted-ink text-[10px]">LEGAL</span>
               </div>
               <div className="font-display font-bold text-sm uppercase text-carbon leading-snug">
-                1991 Rent Control Guard
+                1991 Rent Act Guard
               </div>
               <p className="text-xs text-muted-ink font-sans leading-relaxed">
-                Cross-references lease agreements and landlord demands against Bangladesh&apos;s Premises Rent Control Act, 1991 (বাড়ি ভাড়া নিয়ন্ত্রণ আইন, ১৯৯১).
+                Audits lease terms against Bangladesh&apos;s Premises Rent Control Act, 1991, generating polite counter-drafts.
               </p>
-              <div className="border border-carbon/30 bg-paper p-2 font-mono text-[10px] text-muted-ink font-bangla">
-                ধারা ১৩ ও ১৪ আইনি সুরক্ষা
+              <div className="border border-carbon/30 bg-paper p-1.5 font-mono text-[10px] text-muted-ink font-bangla">
+                ধারা ৭, ১০, ১৩ ও ২১ সুরক্ষা
               </div>
             </div>
 
@@ -661,7 +634,7 @@ export default function HomePage() {
               </h2>
             </div>
             <p className="max-w-md text-xs sm:text-sm text-muted-ink font-mono">
-              How RentRadar detects fake listings: if an ad promises prices &gt;45% below the municipal median, the engine triggers an immediate price anomaly flag.
+              Listings priced &gt;45% below municipal medians trigger automatic scam investigation flags.
             </p>
           </div>
 
@@ -680,7 +653,7 @@ export default function HomePage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-carbon/20">
-                {BENCHMARK_ROWS.map((row, index) => (
+                {displayedBenchmarks.map((row, index) => (
                   <tr
                     key={index}
                     className="hover:bg-paper/80 transition-colors tabular-nums"
@@ -714,13 +687,17 @@ export default function HomePage() {
             </table>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-muted-ink border border-carbon/40 bg-surface p-3 gap-2">
+          <div className="flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-muted-ink border border-carbon/40 bg-surface p-3 gap-3">
             <div>
-              [SOURCE]: OpenStreetMap Geospatial Nodes + Curated Bangladesh Verified Rental Data
+              [HOTSPOTS]: Showing {displayedBenchmarks.length} of {BENCHMARK_ROWS.length} municipal zones
             </div>
-            <div className="text-carbon font-bold">
-              UPDATED FOR 2026 INFLATION &amp; UTILITY TARIFFS
-            </div>
+            <button
+              type="button"
+              onClick={() => setShowAllBenchmarks(!showAllBenchmarks)}
+              className="bg-carbon text-surface px-3 py-1.5 font-bold hover:bg-radar hover:text-carbon transition-colors border border-carbon shadow-docket-sm"
+            >
+              {showAllBenchmarks ? "SHOW TOP 6 REGIONS ▲" : "SHOW ALL 16 REGIONS ▼"}
+            </button>
           </div>
         </div>
       </section>
@@ -749,28 +726,27 @@ export default function HomePage() {
             
             {/* Card 1: Discovery */}
             <div className="border border-carbon bg-paper p-5 shadow-docket hover:shadow-docket-sm transition-all flex flex-col justify-between space-y-4">
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 <div className="flex items-center justify-between font-mono text-xs">
-                  <span className="bg-carbon text-surface font-bold px-2 py-0.5 border border-carbon">
+                  <span className="bg-carbon text-surface font-bold px-2 py-0.5 border border-carbon text-[10px]">
                     MODULE [01]
                   </span>
-                  <span className="text-muted-ink text-[11px]">SPLIT EXPLORER</span>
+                  <span className="text-muted-ink text-[10px]">SPLIT EXPLORER</span>
                 </div>
-                <h3 className="font-display text-xl font-bold uppercase text-carbon">
+                <h3 className="font-display text-lg font-bold uppercase text-carbon">
                   Smart Rental Discovery
                 </h3>
                 <p className="text-xs text-muted-ink font-sans leading-relaxed">
-                  Interactive Leaflet map with custom tactile price pins alongside verified listing cards. Natural language search parses prompts like &ldquo;ধানমন্ডিতে ২০ হাজারের নিচে ২ বেডরুম&rdquo;.
+                  Interactive Leaflet map with tactile price pins and natural language Bangla/English filters like &ldquo;ধানমন্ডিতে ২০ হাজারের নিচে ২ বেড&rdquo;.
                 </p>
                 <div className="flex flex-wrap gap-1 font-mono text-[10px]">
-                  <span className="bg-surface border border-carbon/40 px-1.5 py-0.5">LEAFLET.JS</span>
-                  <span className="bg-surface border border-carbon/40 px-1.5 py-0.5">FUSE.JS</span>
-                  <span className="bg-surface border border-carbon/40 px-1.5 py-0.5">NL FILTERS</span>
+                  <span className="bg-surface border border-carbon/40 px-1.5 py-0.5">LEAFLET MAP</span>
+                  <span className="bg-surface border border-carbon/40 px-1.5 py-0.5">NL SEARCH</span>
                 </div>
               </div>
               <Link href="/discover" className="pt-2">
-                <Button variant="carbon" size="sm" className="w-full flex items-center justify-between">
-                  <span>LAUNCH DISCOVER</span>
+                <Button variant="carbon" size="sm" className="w-full flex items-center justify-between font-bold">
+                  <span>EXPLORE LISTINGS</span>
                   <ArrowUpRight className="h-4 w-4" />
                 </Button>
               </Link>
@@ -779,28 +755,27 @@ export default function HomePage() {
             {/* Card 2: AI Inspector (Featured) */}
             <div className="border-2 border-carbon bg-surface p-5 shadow-docket-yellow hover:shadow-docket transition-all flex flex-col justify-between space-y-4 relative">
               <div className="hazard-stripe absolute top-0 inset-x-0 w-full" />
-              <div className="space-y-3 pt-2">
+              <div className="space-y-2.5 pt-2">
                 <div className="flex items-center justify-between font-mono text-xs">
-                  <span className="bg-radar text-carbon font-bold px-2 py-0.5 border border-carbon">
-                    MODULE [02] — HERO DEMO
+                  <span className="bg-radar text-carbon font-bold px-2 py-0.5 border border-carbon text-[10px]">
+                    MODULE [02] — HERO
                   </span>
-                  <span className="text-evidence-red font-bold text-[11px]">MULTIMODAL AI</span>
+                  <span className="text-evidence-red font-bold text-[10px]">MULTIMODAL AI</span>
                 </div>
-                <h3 className="font-display text-xl font-bold uppercase text-carbon">
+                <h3 className="font-display text-lg font-bold uppercase text-carbon">
                   AI Advertisement Inspector
                 </h3>
                 <p className="text-xs text-muted-ink font-sans leading-relaxed">
-                  Upload a Facebook screenshot or To-Let signboard photo. Gemini extracts claims while Sharp computes 64-bit dHash collision hashes against duplicate listings.
+                  Upload a Facebook screenshot or To-Let poster. Gemini transcribes claims while Sharp identifies stolen photo collisions across neighborhoods.
                 </p>
                 <div className="flex flex-wrap gap-1 font-mono text-[10px]">
-                  <span className="bg-radar/30 border border-carbon px-1.5 py-0.5 font-bold">GEMINI 2.5 FLASH</span>
+                  <span className="bg-radar/40 border border-carbon px-1.5 py-0.5 font-bold">GEMINI 2.5 FLASH</span>
                   <span className="bg-paper border border-carbon/40 px-1.5 py-0.5">64-BIT dHASH</span>
-                  <span className="bg-paper border border-carbon/40 px-1.5 py-0.5">SCAM RULES</span>
                 </div>
               </div>
               <Link href="/inspector" className="pt-2">
                 <Button variant="primary" size="sm" className="w-full flex items-center justify-between font-bold">
-                  <span>LAUNCH AI INSPECTOR</span>
+                  <span>RUN AI INSPECTOR</span>
                   <ArrowUpRight className="h-4 w-4" />
                 </Button>
               </Link>
@@ -808,28 +783,27 @@ export default function HomePage() {
 
             {/* Card 3: Verification */}
             <div className="border border-carbon bg-paper p-5 shadow-docket hover:shadow-docket-sm transition-all flex flex-col justify-between space-y-4">
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 <div className="flex items-center justify-between font-mono text-xs">
-                  <span className="bg-carbon text-surface font-bold px-2 py-0.5 border border-carbon">
+                  <span className="bg-carbon text-surface font-bold px-2 py-0.5 border border-carbon text-[10px]">
                     MODULE [03]
                   </span>
-                  <span className="text-muted-ink text-[11px]">PROOF AUDIT</span>
+                  <span className="text-muted-ink text-[10px]">ZERO-LLM PRIVACY</span>
                 </div>
-                <h3 className="font-display text-xl font-bold uppercase text-carbon">
+                <h3 className="font-display text-lg font-bold uppercase text-carbon">
                   Property Verification
                 </h3>
                 <p className="text-xs text-muted-ink font-sans leading-relaxed">
-                  Landlord utility document upload (DESCO, WASA, Holding Tax) stored in encrypted private buckets. Privacy-first architecture: documents are never sent to 3rd-party LLMs.
+                  Encrypted utility bill audits (DESCO, DPDC, WASA). Real citizen IDs are masked locally with zero document transmission to 3rd-party LLMs.
                 </p>
                 <div className="flex flex-wrap gap-1 font-mono text-[10px]">
-                  <span className="bg-surface border border-carbon/40 px-1.5 py-0.5">SUPABASE STORAGE</span>
-                  <span className="bg-surface border border-carbon/40 px-1.5 py-0.5">UTILITY AUDIT</span>
-                  <span className="bg-surface border border-carbon/40 px-1.5 py-0.5">STAMP BADGES</span>
+                  <span className="bg-surface border border-carbon/40 px-1.5 py-0.5">PRIVATE VAULT</span>
+                  <span className="bg-surface border border-carbon/40 px-1.5 py-0.5">NID MASKING</span>
                 </div>
               </div>
               <Link href="/verify" className="pt-2">
-                <Button variant="carbon" size="sm" className="w-full flex items-center justify-between">
-                  <span>SUBMIT &amp; VERIFY</span>
+                <Button variant="carbon" size="sm" className="w-full flex items-center justify-between font-bold">
+                  <span>VERIFY PROPERTY</span>
                   <ArrowUpRight className="h-4 w-4" />
                 </Button>
               </Link>
@@ -837,28 +811,27 @@ export default function HomePage() {
 
             {/* Card 4: Calculator */}
             <div className="border border-carbon bg-paper p-5 shadow-docket hover:shadow-docket-sm transition-all flex flex-col justify-between space-y-4">
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 <div className="flex items-center justify-between font-mono text-xs">
-                  <span className="bg-carbon text-surface font-bold px-2 py-0.5 border border-carbon">
+                  <span className="bg-carbon text-surface font-bold px-2 py-0.5 border border-carbon text-[10px]">
                     MODULE [04]
                   </span>
-                  <span className="text-muted-ink text-[11px]">TRUE CASHFLOW</span>
+                  <span className="text-muted-ink text-[10px]">TRUE CASHFLOW</span>
                 </div>
-                <h3 className="font-display text-xl font-bold uppercase text-carbon">
-                  True Rental Cost Calculator
+                <h3 className="font-display text-lg font-bold uppercase text-carbon">
+                  True Cost Calculator
                 </h3>
                 <p className="text-xs text-muted-ink font-sans leading-relaxed">
-                  High-contrast Recharts visualization exposing the move-in cost shock (advance months + initial rent + shifting expenses) vs. true recurring monthly utility burn.
+                  Recharts cashflow engine computing advance deposit shock, LPG cylinder costs, and sub-meter markup overcharges against BERC tariffs.
                 </p>
                 <div className="flex flex-wrap gap-1 font-mono text-[10px]">
-                  <span className="bg-surface border border-carbon/40 px-1.5 py-0.5">RECHARTS</span>
-                  <span className="bg-surface border border-carbon/40 px-1.5 py-0.5">BDT METRICS</span>
-                  <span className="bg-surface border border-carbon/40 px-1.5 py-0.5">CASHFLOW AUDIT</span>
+                  <span className="bg-surface border border-carbon/40 px-1.5 py-0.5">MOVE-IN SHOCK</span>
+                  <span className="bg-surface border border-carbon/40 px-1.5 py-0.5">RECHARTS ENGINE</span>
                 </div>
               </div>
               <Link href="/calculator" className="pt-2">
-                <Button variant="carbon" size="sm" className="w-full flex items-center justify-between">
-                  <span>CALCULATE TRUE COST</span>
+                <Button variant="carbon" size="sm" className="w-full flex items-center justify-between font-bold">
+                  <span>CALCULATE CASHFLOW</span>
                   <ArrowUpRight className="h-4 w-4" />
                 </Button>
               </Link>
@@ -866,28 +839,28 @@ export default function HomePage() {
 
             {/* Card 5: Tenant Law Assistant */}
             <div className="border border-carbon bg-paper p-5 shadow-docket hover:shadow-docket-sm transition-all flex flex-col justify-between space-y-4 md:col-span-2 lg:col-span-2">
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 <div className="flex items-center justify-between font-mono text-xs">
-                  <span className="bg-carbon text-surface font-bold px-2 py-0.5 border border-carbon">
+                  <span className="bg-carbon text-surface font-bold px-2 py-0.5 border border-carbon text-[10px]">
                     MODULE [05]
                   </span>
-                  <span className="text-muted-ink text-[11px]">1991 PREMISES RENT ACT</span>
+                  <span className="text-muted-ink text-[10px]">1991 PREMISES RENT ACT</span>
                 </div>
-                <h3 className="font-display text-xl font-bold uppercase text-carbon">
+                <h3 className="font-display text-lg font-bold uppercase text-carbon">
                   Tenant Protection &amp; Legal Guard
                 </h3>
                 <p className="text-xs text-muted-ink font-sans leading-relaxed">
-                  AI legal assistant grounded in Bangladesh&apos;s Premises Rent Control Act, 1991 (বাড়ি ভাড়া নিয়ন্ত্রণ আইন, ১৯৯১). Paste any draft lease clause or agreement snippet (চুক্তিপত্র) to check statutory notice periods, repair obligations, and deposit limits.
+                  Bilingual legal assistant grounded in the Premises Rent Control Act, 1991 (বাড়ি ভাড়া নিয়ন্ত্রণ আইন, ১৯৯১). Audits draft leases, checks illegal rent hikes, and generates printable Section 13 rent receipts (ভাড়ার রশিদ).
                 </p>
                 <div className="flex flex-wrap gap-1 font-mono text-[10px]">
-                  <span className="bg-surface border border-carbon/40 px-1.5 py-0.5">1991 RENT CONTROL ACT</span>
-                  <span className="bg-surface border border-carbon/40 px-1.5 py-0.5">CLAUSE AUDIT</span>
-                  <span className="bg-surface border border-carbon/40 px-1.5 py-0.5">BILINGUAL QA</span>
+                  <span className="bg-surface border border-carbon/40 px-1.5 py-0.5">1991 RENT ACT</span>
+                  <span className="bg-surface border border-carbon/40 px-1.5 py-0.5">CLAUSE AUDITOR</span>
+                  <span className="bg-surface border border-carbon/40 px-1.5 py-0.5">RECEIPT PRINTER</span>
                 </div>
               </div>
               <Link href="/assistant" className="pt-2">
-                <Button variant="carbon" size="sm" className="w-full flex items-center justify-between">
-                  <span>CONSULT LEGAL GUARD</span>
+                <Button variant="carbon" size="sm" className="w-full flex items-center justify-between font-bold">
+                  <span>AUDIT LEASE CLAUSES</span>
                   <ArrowUpRight className="h-4 w-4" />
                 </Button>
               </Link>

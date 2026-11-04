@@ -2,24 +2,24 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Radar, Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { IdentityStatusModal } from "@/components/auth/IdentityStatusModal";
 import { JudgeTourDrawer } from "@/components/layout/JudgeTourDrawer";
 
 const NAV_LINKS = [
-  { href: "/discover", label: "[01] DISCOVER", desc: "Interactive Map & NL Search" },
+  { href: "/discover", label: "[01] DISCOVER" },
   {
     href: "/inspector",
     label: "[02] AI INSPECTOR",
-    desc: "Multimodal Gemini + dHash",
-    highlight: "HERO DEMO",
+    highlight: "HERO",
   },
-  { href: "/verify", label: "[03] VERIFY & LIST", desc: "Utility Bill Proof Audit" },
-  { href: "/calculator", label: "[04] TRUE-COST CALC", desc: "Move-In & Utility Exposure" },
-  { href: "/assistant", label: "[05] TENANT LAW", desc: "1991 Rent Control Guard" },
+  { href: "/verify", label: "[03] VERIFY & LIST" },
+  { href: "/calculator", label: "[04] TRUE-COST" },
+  { href: "/assistant", label: "[05] TENANT LAW" },
 ];
 
 export const Navbar: React.FC = () => {
@@ -28,26 +28,26 @@ export const Navbar: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-50 h-16 w-full bg-surface border-b-2 border-carbon">
-      <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-3 sm:px-6 lg:px-8">
-        {/* Left Brand Block */}
+      <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-3 sm:px-6 lg:px-8 gap-2">
+        {/* Top-Left: Official RentRadar Logo */}
         <Link
           href="/"
-          className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none"
+          className="flex items-center gap-2 group focus:outline-none shrink-0"
+          title="RentRadar BD — Home"
         >
-          <div className="flex h-9 w-9 items-center justify-center bg-radar border border-carbon shadow-docket-sm transition-transform group-hover:scale-105">
-            <Radar className="h-5 w-5 text-carbon animate-pulse" />
-          </div>
-          <div className="flex items-baseline gap-1.5">
-            <span className="font-display text-xl sm:text-2xl font-bold tracking-tight text-carbon uppercase">
-              RentRadar
-            </span>
-            <span className="font-mono text-[10px] sm:text-[11px] font-semibold text-muted-ink border border-carbon/30 bg-paper px-1 py-0.2">
-              BD // v1.0
-            </span>
+          <div className="relative h-9 sm:h-10 w-auto flex items-center">
+            <Image
+              src="/rentradar-logo.png"
+              alt="RentRadar"
+              width={160}
+              height={36}
+              className="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+              priority
+            />
           </div>
         </Link>
 
-        {/* Center Module Switcher (Desktop) */}
+        {/* Center: Streamlined Module Switcher (Desktop) */}
         <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
           {NAV_LINKS.map((link) => {
             const isActive = pathname === link.href;
@@ -69,7 +69,7 @@ export const Navbar: React.FC = () => {
                       "text-[9px] uppercase font-bold tracking-wider px-1 py-0.2 border",
                       isActive
                         ? "bg-radar text-carbon border-radar"
-                        : "bg-radar/30 text-carbon border-carbon/60"
+                        : "bg-radar/40 text-carbon border-carbon/50"
                     )}
                   >
                     {link.highlight}
@@ -80,13 +80,21 @@ export const Navbar: React.FC = () => {
           })}
         </nav>
 
-        {/* Right Action & Telemetry Strip */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          {/* Live System Telemetry Badge */}
-          <div className="hidden xl:flex items-center gap-1.5 border border-carbon/40 bg-paper px-2.5 py-1 text-[11px] font-mono text-carbon">
-            <span className="h-2 w-2 rounded-none bg-evidence-green animate-ping" />
-            <span className="font-bold">ENGINE:</span>
-            <span className="text-muted-ink">GEMINI MULTIMODAL + dHASH</span>
+        {/* Top-Right: Built for AIgnite 2026 Badge & Action Tools */}
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          {/* Top-Right: Official "Built for AIgnite 2026" Badge */}
+          <div
+            className="flex items-center h-8 sm:h-9 border border-carbon/30 bg-white px-2 py-0.5 shadow-docket-sm hover:border-carbon transition-colors"
+            title="Official Buildathon Entry — Built for AIgnite 2026"
+          >
+            <Image
+              src="/built-for-aignite-2026.png"
+              alt="Built for AIgnite 2026"
+              width={116}
+              height={32}
+              className="h-6 sm:h-7 w-auto object-contain"
+              priority
+            />
           </div>
 
           {/* Interactive Identity & Persona Switcher */}
@@ -95,7 +103,7 @@ export const Navbar: React.FC = () => {
           {/* Interactive Judge 2-Minute Proof HUD */}
           <JudgeTourDrawer />
 
-          {/* Primary CTA */}
+          {/* Quick Primary Action */}
           <Link href="/inspector" className="hidden sm:inline-flex">
             <Button
               variant="primary"
@@ -122,18 +130,39 @@ export const Navbar: React.FC = () => {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="lg:hidden fixed inset-x-0 top-16 bg-surface border-b-2 border-carbon shadow-docket p-4 z-50 flex flex-col gap-2 bg-paper/95 backdrop-none">
-          <div className="hazard-stripe w-full mb-2" />
+          <div className="flex items-center justify-between pb-2 border-b border-carbon/20">
+            <Image
+              src="/rentradar-logo.png"
+              alt="RentRadar"
+              width={120}
+              height={28}
+              className="h-7 w-auto object-contain"
+            />
+            <Image
+              src="/built-for-aignite-2026.png"
+              alt="Built for AIgnite 2026"
+              width={100}
+              height={28}
+              className="h-6 w-auto object-contain"
+            />
+          </div>
+
+          <div className="hazard-stripe w-full my-1" />
+
           <div className="flex items-center justify-between p-2 bg-paper border border-carbon/30">
             <span className="text-[10px] font-mono uppercase text-muted-ink">IDENTITY CLEARANCE:</span>
             <IdentityStatusModal />
           </div>
+
           <div className="flex items-center justify-between p-2 bg-radar/20 border border-carbon">
             <span className="text-[10px] font-mono uppercase font-bold text-carbon">BUILDATHON EVALUATION:</span>
             <JudgeTourDrawer />
           </div>
-          <div className="text-[10px] font-mono uppercase text-muted-ink px-1 tracking-wider">
-            // CIVIC PLATFORM MODULE DIRECTORY
+
+          <div className="text-[10px] font-mono uppercase text-muted-ink px-1 tracking-wider pt-1">
+            // MODULE DIRECTORY
           </div>
+
           <div className="flex flex-col gap-1.5">
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href;
@@ -163,11 +192,7 @@ export const Navbar: React.FC = () => {
             })}
           </div>
 
-          <div className="mt-2 pt-3 border-t border-carbon/20 flex flex-col gap-2">
-            <div className="flex items-center justify-between text-[11px] font-mono text-muted-ink px-1">
-              <span>ACTIVE ENGINE</span>
-              <span className="font-bold text-carbon">GEMINI 2.5 + 64-BIT dHASH</span>
-            </div>
+          <div className="mt-2 pt-3 border-t border-carbon/20">
             <Link
               href="/inspector"
               onClick={() => setMobileMenuOpen(false)}

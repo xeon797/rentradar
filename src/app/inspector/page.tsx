@@ -252,16 +252,15 @@ https://rentradar.bd
 
   return (
     <div className="w-full bg-paper min-h-[calc(100vh-4rem)]">
-      {/* Top Architectural Docket Banner */}
+      {/* Clean Header Bar */}
       <div className="border-b-2 border-carbon bg-surface px-4 py-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="space-y-1">
+        <div className="mx-auto max-w-7xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="space-y-0.5">
             <div className="flex items-center gap-2 font-mono text-[11px] text-muted-ink">
-              <span className="bg-radar text-carbon font-bold px-1.5 py-0.5 border border-carbon">
-                MODULE [02] — THE HERO DEMO
+              <span className="bg-radar text-carbon font-bold px-1.5 py-0.5 border border-carbon text-[10px]">
+                MODULE 02
               </span>
               <span>// FORENSIC AUDIT PIPELINE</span>
-              <span className="text-carbon font-bold">// GEMINI 2.5 FLASH + SHARP 64-BIT dHASH</span>
             </div>
             <h1 className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-carbon">
               AI Listing Inspector &amp; Scam Radar
@@ -269,15 +268,11 @@ https://rentradar.bd
           </div>
 
           <div className="flex items-center gap-2 flex-wrap font-mono text-xs">
-            <div className="border border-carbon bg-paper px-3 py-1.5 flex items-center gap-2 shadow-docket-sm">
-              <span className="h-2 w-2 bg-evidence-red animate-pulse" />
-              <span className="text-muted-ink">RULES ENGINE:</span>
-              <span className="font-bold text-carbon">6 DETERMINISTIC POLICIES</span>
+            <div className="border border-carbon bg-paper px-2.5 py-1 text-muted-ink text-[11px] shadow-docket-sm">
+              <span className="text-evidence-green font-bold">●</span> <strong className="text-carbon">6</strong> Deterministic Rules
             </div>
-            <div className="border border-carbon bg-paper px-3 py-1.5 flex items-center gap-2 shadow-docket-sm">
-              <span className="h-2 w-2 bg-radar" />
-              <span className="text-muted-ink">STATUTE:</span>
-              <span className="font-bold text-carbon">1991 PREMISES RENT ACT</span>
+            <div className="border border-carbon bg-paper px-2.5 py-1 text-muted-ink text-[11px] shadow-docket-sm">
+              <span className="text-radar font-bold">●</span> <strong className="text-carbon">1991</strong> Rent Act
             </div>
           </div>
         </div>
@@ -415,10 +410,10 @@ https://rentradar.bd
               <button
                 type="button"
                 onClick={handleGenerateSyntheticAd}
-                className="w-full px-3 py-2 bg-paper border border-carbon text-carbon hover:bg-radar text-xs font-mono font-bold transition-colors flex items-center justify-center gap-1.5 shadow-[1px_1px_0px_0px_#0A0A0A]"
+                className="w-full px-3 py-1.5 bg-paper border border-carbon text-carbon hover:bg-radar text-xs font-mono font-bold transition-colors flex items-center justify-center gap-1.5 shadow-docket-sm"
               >
                 <span>⚡</span>
-                <span>GENERATE &amp; UPLOAD SYNTHETIC BANGLA TO-LET POSTER</span>
+                <span>GENERATE SAMPLE BANGLA TO-LET POSTER</span>
               </button>
 
               {/* Raw Text Input */}

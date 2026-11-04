@@ -289,14 +289,13 @@ export default function DiscoverPage() {
     <div className="w-full bg-paper min-h-[calc(100vh-4rem)]">
       {/* Top Editorial Architectural Docket Banner */}
       <div className="border-b-2 border-carbon bg-surface px-4 py-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="space-y-1">
+        <div className="mx-auto max-w-7xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="space-y-0.5">
             <div className="flex items-center gap-2 font-mono text-[11px] text-muted-ink">
-              <span className="bg-carbon text-surface font-bold px-1.5 py-0.5">
-                MODULE [01]
+              <span className="bg-carbon text-surface font-bold px-1.5 py-0.5 text-[10px]">
+                MODULE 01
               </span>
-              <span>// SPATIAL DISCOVERY ENGINE</span>
-              <span className="text-carbon font-bold">// DHAKA • SYLHET • CHATTOGRAM</span>
+              <span>// SPATIAL RADAR &amp; NATURAL LANGUAGE</span>
             </div>
             <h1 className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-carbon">
               Smart Rental Discovery &amp; Geospatial Radar
@@ -304,20 +303,11 @@ export default function DiscoverPage() {
           </div>
 
           <div className="flex items-center gap-2 flex-wrap font-mono text-xs">
-            <div className="border border-carbon bg-paper px-3 py-1.5 flex items-center gap-2 shadow-docket-sm">
-              <span className="h-2 w-2 bg-evidence-green" />
-              <span className="text-muted-ink">INDEX:</span>
-              <span className="font-bold text-carbon">
-                {properties.length} DOCKETS ARCHIVED
-              </span>
+            <div className="border border-carbon bg-paper px-2.5 py-1 text-muted-ink text-[11px] shadow-docket-sm">
+              <strong className="text-carbon">{properties.length}</strong> Listings
             </div>
-
-            <div className="border border-carbon bg-paper px-3 py-1.5 flex items-center gap-2 shadow-docket-sm">
-              <span className="h-2 w-2 bg-radar" />
-              <span className="text-muted-ink">COLLISIONS:</span>
-              <span className="font-bold text-carbon">
-                {collisionDocketSet.size / 2} PAIRS FLAGGED
-              </span>
+            <div className="border border-carbon bg-paper px-2.5 py-1 text-muted-ink text-[11px] shadow-docket-sm">
+              <strong className="text-carbon">{collisionDocketSet.size / 2}</strong> Collision Pairs
             </div>
           </div>
         </div>

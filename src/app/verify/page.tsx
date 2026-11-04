@@ -331,14 +331,13 @@ export default function VerifyPage() {
     <div className="w-full bg-paper min-h-[calc(100vh-4rem)]">
       {/* Top Docket Banner */}
       <div className="border-b-2 border-carbon bg-surface px-4 py-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="space-y-1">
+        <div className="mx-auto max-w-7xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="space-y-0.5">
             <div className="flex items-center gap-2 font-mono text-[11px] text-muted-ink">
-              <span className="bg-radar text-carbon font-bold px-1.5 py-0.5 border border-carbon">
-                MODULE [03]
+              <span className="bg-carbon text-surface font-bold px-1.5 py-0.5 text-[10px]">
+                MODULE 03
               </span>
-              <span>// LANDLORD VERIFICATION &amp; AUDITOR QUEUE</span>
-              <span className="text-carbon font-bold">// DESCO • WASA • HOLDING TAX</span>
+              <span>// UTILITY PROOF &amp; AUDITOR QUEUE</span>
             </div>
             <h1 className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-carbon">
               Listing Creation &amp; Utility Proof Desk
@@ -346,15 +345,9 @@ export default function VerifyPage() {
           </div>
 
           <div className="flex items-center gap-2 flex-wrap font-mono text-xs">
-            <div className="border border-carbon bg-paper px-3 py-1.5 flex items-center gap-2 shadow-docket-sm">
+            <div className="border border-carbon bg-paper px-2.5 py-1 text-muted-ink text-[11px] shadow-docket-sm flex items-center gap-1.5">
               <Lock className="w-3.5 h-3.5 text-evidence-green" />
-              <span className="text-muted-ink">VAULT:</span>
-              <span className="font-bold text-carbon">ZERO-LLM-LEAK ISOLATED</span>
-            </div>
-            <div className="border border-carbon bg-paper px-3 py-1.5 flex items-center gap-2 shadow-docket-sm">
-              <Mail className="w-3.5 h-3.5 text-carbon" />
-              <span className="text-muted-ink">DISPATCH:</span>
-              <span className="font-bold text-carbon">RESEND REST API</span>
+              <span><strong className="text-carbon">Zero-LLM</strong> Privacy Vault</span>
             </div>
           </div>
         </div>

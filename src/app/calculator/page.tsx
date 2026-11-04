@@ -208,12 +208,13 @@ function CalculatorContent() {
     <div className="w-full bg-paper min-h-[calc(100vh-4rem)] pb-16">
       {/* Top Header & Telemetry Bar */}
       <div className="border-b-2 border-carbon bg-surface px-4 py-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="space-y-1">
+        <div className="mx-auto max-w-7xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="space-y-0.5">
             <div className="flex items-center gap-2 font-mono text-[11px] text-muted-ink">
-              <span className="bg-carbon text-surface font-bold px-1.5 py-0.2">MODULE [04]</span>
-              <span>// BANGLADESH FINANCIAL AUDIT</span>
-              <span className="text-carbon font-bold">// ADVERTISED VS. TRUE CASH OUTFLOW</span>
+              <span className="bg-carbon text-surface font-bold px-1.5 py-0.5 text-[10px]">
+                MODULE 04
+              </span>
+              <span>// FINANCIAL AUDIT &amp; CASHFLOW</span>
             </div>
             <h1 className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-carbon">
               True-Cost &amp; Move-In Shock Calculator
@@ -221,15 +222,13 @@ function CalculatorContent() {
           </div>
 
           <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
-            <div className="border border-carbon bg-paper px-3 py-1.5 flex items-center gap-2">
-              <span className="h-2 w-2 bg-evidence-green animate-pulse" />
-              <span className="text-muted-ink">BERC &amp; WASA TARIFFS:</span>
-              <span className="font-bold text-carbon">2026 OFFICIAL SLABS</span>
+            <div className="border border-carbon bg-paper px-2.5 py-1 text-muted-ink text-[11px] shadow-docket-sm">
+              <strong className="text-carbon">BERC &amp; WASA</strong> 2026 Slabs
             </div>
             <Link href="/assistant">
               <Button variant="outline" size="sm" className="font-mono text-xs gap-1.5">
                 <Scale className="h-3.5 w-3.5 text-evidence-amber" />
-                <span>1991 RENT ACT AUDITOR</span>
+                <span>1991 RENT ACT</span>
               </Button>
             </Link>
           </div>
